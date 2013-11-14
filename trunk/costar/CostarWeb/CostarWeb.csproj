@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Base\Product\jquery.autogrow.textarea.js" />
+    <Content Include="Admin\Base\Product\ProductInventory.aspx" />
     <Content Include="js\jquery.js" />
     <Content Include="Admin\Base\Product\ProductAjax.aspx" />
     <Content Include="Admin\Base\Product\ProductEdit.aspx" />
@@ -257,6 +258,13 @@
     </Compile>
     <Compile Include="Admin\Base\Product\ProductEdit.aspx.designer.cs">
       <DependentUpon>ProductEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Base\Product\ProductInventory.aspx.cs">
+      <DependentUpon>ProductInventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Base\Product\ProductInventory.aspx.designer.cs">
+      <DependentUpon>ProductInventory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Base\Product\ProductList.aspx.cs">
       <DependentUpon>ProductList.aspx</DependentUpon>
