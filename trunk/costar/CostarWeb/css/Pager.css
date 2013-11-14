@@ -1,0 +1,7 @@
+﻿.pager { font-size: 12px; height: 25px; text-align: center; margin: 0px auto; text-align: center; margin-top: 10px; clear: both; }
+.pager a { margin: 0px 2px; display: block; padding: 3px 8px; border: 1px solid #ccc; text-align: center; text-decoration: none; color: #99210B; display: inline; line-height: 25px; }
+.pager a:hover { border: 1px solid #000; border: 1px solid #99210B; }
+.pager .justone, .pager .justone:hover { font-weight: bold; color: #99210B; border: none; }
+.pager .no_link, .pager .no_link:hover { color: #adaaad; border: none; }
+.pager .formPage { display: inline; }
+.pager .inputPage { width: 30px; }

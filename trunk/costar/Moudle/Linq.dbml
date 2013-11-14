@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="costar" Class="LinqDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.AppliedUpdates" Member="AppliedUpdates">
+    <Type Name="AppliedUpdates">
+      <Column Name="UpdateID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StoreVariantTypes" Member="StoreVariantTypes">
+    <Type Name="StoreVariantTypes">
+      <Column Name="VariantTypeID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GroupName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+      <Association Name="StoreVariantTypes_StoreProducts" Member="StoreProducts" ThisKey="VariantTypeID" OtherKey="Variant1TypeID" Type="StoreProducts" />
+      <Association Name="StoreVariantTypes_StoreProducts1" Member="StoreProducts1" ThisKey="VariantTypeID" OtherKey="Variant2TypeID" Type="StoreProducts" />
+      <Association Name="StoreVariantTypes_StoreVariantTypeOptions" Member="StoreVariantTypeOptions" ThisKey="VariantTypeID" OtherKey="VariantTypeID" Type="StoreVariantTypeOptions" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StoreAnimes" Member="StoreAnimes">
+    <Type Name="StoreAnimes">
+      <Column Name="AnimeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AnimeName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TimeStamp" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Association Name="StoreAnimes_StoreProducts" Member="StoreProducts" ThisKey="AnimeID" OtherKey="AnimeID" Type="StoreProducts" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StoreColors" Member="StoreColors">
+    <Type Name="StoreColors">
+      <Column Name="ColorID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ColorName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Association Name="StoreColors_StoreProductColors" Member="StoreProductColors" ThisKey="ColorID" OtherKey="ColorID" Type="StoreProductColors" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StoreProductColors" Member="StoreProductColors">
+    <Type Name="StoreProductColors">
+      <Column Name="ProductID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ColorID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Association Name="StoreColors_StoreProductColors" Member="StoreColors" ThisKey="ColorID" OtherKey="ColorID" Type="StoreColors" IsForeignKey="true" />
+      <Association Name="StoreProducts_StoreProductColors" Member="StoreProducts" ThisKey="ProductID" OtherKey="ProductID" Type="StoreProducts" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StoreProducts" Member="StoreProducts">
+    <Type Name="StoreProducts">
+      <Column Name="ProductID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AnimeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductCode" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="PageName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsFeatured" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ImageFile" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="ImageFile2" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="ImageFile3" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="ImageFile4" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="RetailPrice" Type="System.Decimal" DbType="SmallMoney" CanBeNull="true" />
+      <Column Name="SalePrice" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
+      <Column Name="VIPPrice" Type="System.Decimal" DbType="SmallMoney" CanBeNull="true" />
+      <Column Name="DeleteDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="AddeDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Variant1TypeID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Variant2TypeID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+      <Association Name="StoreProducts_StoreProductColors" Member="StoreProductColors" ThisKey="ProductID" OtherKey="ProductID" Type="StoreProductColors" />
+      <Association Name="StoreAnimes_StoreProducts" Member="StoreAnimes" ThisKey="AnimeID" OtherKey="AnimeID" Type="StoreAnimes" IsForeignKey="true" />
+      <Association Name="StoreVariantTypes_StoreProducts" Member="StoreVariantTypes" ThisKey="Variant1TypeID" OtherKey="VariantTypeID" Type="StoreVariantTypes" IsForeignKey="true" />
+      <Association Name="StoreVariantTypes_StoreProducts1" Member="StoreVariantTypes1" ThisKey="Variant2TypeID" OtherKey="VariantTypeID" Type="StoreVariantTypes" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StoreVariantTypeOptions" Member="StoreVariantTypeOptions">
+    <Type Name="StoreVariantTypeOptions">
+      <Column Name="VariantOptionID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VariantTypeID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="SortOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+      <Association Name="StoreVariantTypes_StoreVariantTypeOptions" Member="StoreVariantTypes" ThisKey="VariantTypeID" OtherKey="VariantTypeID" Type="StoreVariantTypes" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
