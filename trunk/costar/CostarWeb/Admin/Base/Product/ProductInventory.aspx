@@ -14,7 +14,7 @@
             $("#ProductNo").click(function () {
                 $("#VaiantNo").css("display", "block");
                 $("#VaiantYes").css("display", "none");
-            });
+            }); 
             //点击有属性显示属性，隐藏数量
             $("#ProductYes").click(function () {
                 $("#VaiantNo").css("display", "none");

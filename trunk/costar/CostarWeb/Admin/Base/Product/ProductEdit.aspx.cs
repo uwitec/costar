@@ -86,8 +86,8 @@ namespace CostarWeb.Admin.Base.Product
         {
             using (LinqDataContext linq = new LinqDataContext())
             {
-                StoreProducts product;
-                if (productID < 1) product = new StoreProducts();
+                StoreProduct product;
+                if (productID < 1) product = new StoreProduct();
                 else product = linq.StoreProducts.Where(c => c.ProductID == productID).SingleOrDefault();
 
                 product.Name = Request["ProductName"];
@@ -124,7 +124,7 @@ namespace CostarWeb.Admin.Base.Product
                 {
                     for (int i = 0; i < Request["color"].Split(',').Length; i++)
                     {
-                        StoreProductColors pcolor = new StoreProductColors();
+                        StoreProductColor pcolor = new StoreProductColor();
                         pcolor.ProductID = pId;
                         pcolor.ColorID = MyCommon.ToInt(Request["color"].Split(',')[i]);
 

@@ -1,49 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="costar" Class="LinqDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Table Name="dbo.AppliedUpdates" Member="AppliedUpdates">
-    <Type Name="AppliedUpdates">
+    <Type Name="AppliedUpdate">
       <Column Name="UpdateID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
     </Type>
   </Table>
   <Table Name="dbo.StoreVariantTypes" Member="StoreVariantTypes">
-    <Type Name="StoreVariantTypes">
+    <Type Name="StoreVariantType">
       <Column Name="VariantTypeID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="GroupName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
       <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
-      <Association Name="StoreVariantTypes_StoreProducts" Member="StoreProducts" ThisKey="VariantTypeID" OtherKey="Variant1TypeID" Type="StoreProducts" />
-      <Association Name="StoreVariantTypes_StoreProducts1" Member="StoreProducts1" ThisKey="VariantTypeID" OtherKey="Variant2TypeID" Type="StoreProducts" />
-      <Association Name="StoreVariantTypes_StoreVariantTypeOptions" Member="StoreVariantTypeOptions" ThisKey="VariantTypeID" OtherKey="VariantTypeID" Type="StoreVariantTypeOptions" />
+      <Association Name="StoreVariantType_StoreProduct" Member="StoreProducts" ThisKey="VariantTypeID" OtherKey="Variant1TypeID" Type="StoreProduct" />
+      <Association Name="StoreVariantType_StoreProduct1" Member="StoreProducts1" ThisKey="VariantTypeID" OtherKey="Variant2TypeID" Type="StoreProduct" />
+      <Association Name="StoreVariantType_StoreVariantTypeOption" Member="StoreVariantTypeOptions" ThisKey="VariantTypeID" OtherKey="VariantTypeID" Type="StoreVariantTypeOption" />
     </Type>
   </Table>
   <Table Name="dbo.StoreAnimes" Member="StoreAnimes">
-    <Type Name="StoreAnimes">
+    <Type Name="StoreAnime">
       <Column Name="AnimeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="AnimeName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="TimeStamp" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
-      <Association Name="StoreAnimes_StoreProducts" Member="StoreProducts" ThisKey="AnimeID" OtherKey="AnimeID" Type="StoreProducts" />
+      <Association Name="StoreAnime_StoreProduct" Member="StoreProducts" ThisKey="AnimeID" OtherKey="AnimeID" Type="StoreProduct" />
     </Type>
   </Table>
   <Table Name="dbo.StoreColors" Member="StoreColors">
-    <Type Name="StoreColors">
+    <Type Name="StoreColor">
       <Column Name="ColorID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ColorName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
-      <Association Name="StoreColors_StoreProductColors" Member="StoreProductColors" ThisKey="ColorID" OtherKey="ColorID" Type="StoreProductColors" />
+      <Association Name="StoreColor_StoreProductColor" Member="StoreProductColors" ThisKey="ColorID" OtherKey="ColorID" Type="StoreProductColor" />
     </Type>
   </Table>
   <Table Name="dbo.StoreProductColors" Member="StoreProductColors">
-    <Type Name="StoreProductColors">
+    <Type Name="StoreProductColor">
       <Column Name="ProductID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="ColorID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
-      <Association Name="StoreColors_StoreProductColors" Member="StoreColors" ThisKey="ColorID" OtherKey="ColorID" Type="StoreColors" IsForeignKey="true" />
-      <Association Name="StoreProducts_StoreProductColors" Member="StoreProducts" ThisKey="ProductID" OtherKey="ProductID" Type="StoreProducts" IsForeignKey="true" />
+      <Association Name="StoreColor_StoreProductColor" Member="StoreColor" ThisKey="ColorID" OtherKey="ColorID" Type="StoreColor" IsForeignKey="true" />
+      <Association Name="StoreProduct_StoreProductColor" Member="StoreProduct" ThisKey="ProductID" OtherKey="ProductID" Type="StoreProduct" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.StoreProductInventories" Member="StoreProductInventories">
-    <Type Name="StoreProductInventories">
+    <Type Name="StoreProductInventory">
       <Column Name="InventoryID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ProductID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="QtyAvail" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -53,12 +53,12 @@
       <Column Name="Variant1OptionID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="Variant2OptionID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
-      <Association Name="StoreVariantTypeOptions_StoreProductInventories" Member="StoreVariantTypeOptions" ThisKey="Variant1OptionID" OtherKey="VariantOptionID" Type="StoreVariantTypeOptions" IsForeignKey="true" />
-      <Association Name="StoreVariantTypeOptions_StoreProductInventories1" Member="StoreVariantTypeOptions1" ThisKey="Variant2OptionID" OtherKey="VariantOptionID" Type="StoreVariantTypeOptions" IsForeignKey="true" />
+      <Association Name="StoreVariantTypeOption_StoreProductInventory" Member="StoreVariantTypeOption" ThisKey="Variant1OptionID" OtherKey="VariantOptionID" Type="StoreVariantTypeOption" IsForeignKey="true" />
+      <Association Name="StoreVariantTypeOption_StoreProductInventory1" Member="StoreVariantTypeOption1" ThisKey="Variant2OptionID" OtherKey="VariantOptionID" Type="StoreVariantTypeOption" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.StoreProducts" Member="StoreProducts">
-    <Type Name="StoreProducts">
+    <Type Name="StoreProduct">
       <Column Name="ProductID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="AnimeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ProductCode" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
@@ -80,22 +80,22 @@
       <Column Name="Variant1TypeID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="Variant2TypeID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
-      <Association Name="StoreProducts_StoreProductColors" Member="StoreProductColors" ThisKey="ProductID" OtherKey="ProductID" Type="StoreProductColors" />
-      <Association Name="StoreAnimes_StoreProducts" Member="StoreAnimes" ThisKey="AnimeID" OtherKey="AnimeID" Type="StoreAnimes" IsForeignKey="true" />
-      <Association Name="StoreVariantTypes_StoreProducts" Member="StoreVariantTypes" ThisKey="Variant1TypeID" OtherKey="VariantTypeID" Type="StoreVariantTypes" IsForeignKey="true" />
-      <Association Name="StoreVariantTypes_StoreProducts1" Member="StoreVariantTypes1" ThisKey="Variant2TypeID" OtherKey="VariantTypeID" Type="StoreVariantTypes" IsForeignKey="true" />
+      <Association Name="StoreProduct_StoreProductColor" Member="StoreProductColors" ThisKey="ProductID" OtherKey="ProductID" Type="StoreProductColor" />
+      <Association Name="StoreAnime_StoreProduct" Member="StoreAnime" ThisKey="AnimeID" OtherKey="AnimeID" Type="StoreAnime" IsForeignKey="true" />
+      <Association Name="StoreVariantType_StoreProduct" Member="StoreVariantType" ThisKey="Variant1TypeID" OtherKey="VariantTypeID" Type="StoreVariantType" IsForeignKey="true" />
+      <Association Name="StoreVariantType_StoreProduct1" Member="StoreVariantType1" ThisKey="Variant2TypeID" OtherKey="VariantTypeID" Type="StoreVariantType" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.StoreVariantTypeOptions" Member="StoreVariantTypeOptions">
-    <Type Name="StoreVariantTypeOptions">
+    <Type Name="StoreVariantTypeOption">
       <Column Name="VariantOptionID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="VariantTypeID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="SortOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
-      <Association Name="StoreVariantTypeOptions_StoreProductInventories" Member="StoreProductInventories" ThisKey="VariantOptionID" OtherKey="Variant1OptionID" Type="StoreProductInventories" />
-      <Association Name="StoreVariantTypeOptions_StoreProductInventories1" Member="StoreProductInventories1" ThisKey="VariantOptionID" OtherKey="Variant2OptionID" Type="StoreProductInventories" />
-      <Association Name="StoreVariantTypes_StoreVariantTypeOptions" Member="StoreVariantTypes" ThisKey="VariantTypeID" OtherKey="VariantTypeID" Type="StoreVariantTypes" IsForeignKey="true" />
+      <Association Name="StoreVariantTypeOption_StoreProductInventory" Member="StoreProductInventories" ThisKey="VariantOptionID" OtherKey="Variant1OptionID" Type="StoreProductInventory" />
+      <Association Name="StoreVariantTypeOption_StoreProductInventory1" Member="StoreProductInventories1" ThisKey="VariantOptionID" OtherKey="Variant2OptionID" Type="StoreProductInventory" />
+      <Association Name="StoreVariantType_StoreVariantTypeOption" Member="StoreVariantType" ThisKey="VariantTypeID" OtherKey="VariantTypeID" Type="StoreVariantType" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

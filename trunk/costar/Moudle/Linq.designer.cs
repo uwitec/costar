@@ -30,30 +30,30 @@ namespace Moudle
 		
     #region 可扩展性方法定义
     partial void OnCreated();
-    partial void InsertAppliedUpdates(AppliedUpdates instance);
-    partial void UpdateAppliedUpdates(AppliedUpdates instance);
-    partial void DeleteAppliedUpdates(AppliedUpdates instance);
-    partial void InsertStoreVariantTypes(StoreVariantTypes instance);
-    partial void UpdateStoreVariantTypes(StoreVariantTypes instance);
-    partial void DeleteStoreVariantTypes(StoreVariantTypes instance);
-    partial void InsertStoreAnimes(StoreAnimes instance);
-    partial void UpdateStoreAnimes(StoreAnimes instance);
-    partial void DeleteStoreAnimes(StoreAnimes instance);
-    partial void InsertStoreColors(StoreColors instance);
-    partial void UpdateStoreColors(StoreColors instance);
-    partial void DeleteStoreColors(StoreColors instance);
-    partial void InsertStoreProductColors(StoreProductColors instance);
-    partial void UpdateStoreProductColors(StoreProductColors instance);
-    partial void DeleteStoreProductColors(StoreProductColors instance);
-    partial void InsertStoreProductInventories(StoreProductInventories instance);
-    partial void UpdateStoreProductInventories(StoreProductInventories instance);
-    partial void DeleteStoreProductInventories(StoreProductInventories instance);
-    partial void InsertStoreProducts(StoreProducts instance);
-    partial void UpdateStoreProducts(StoreProducts instance);
-    partial void DeleteStoreProducts(StoreProducts instance);
-    partial void InsertStoreVariantTypeOptions(StoreVariantTypeOptions instance);
-    partial void UpdateStoreVariantTypeOptions(StoreVariantTypeOptions instance);
-    partial void DeleteStoreVariantTypeOptions(StoreVariantTypeOptions instance);
+    partial void InsertAppliedUpdate(AppliedUpdate instance);
+    partial void UpdateAppliedUpdate(AppliedUpdate instance);
+    partial void DeleteAppliedUpdate(AppliedUpdate instance);
+    partial void InsertStoreVariantType(StoreVariantType instance);
+    partial void UpdateStoreVariantType(StoreVariantType instance);
+    partial void DeleteStoreVariantType(StoreVariantType instance);
+    partial void InsertStoreAnime(StoreAnime instance);
+    partial void UpdateStoreAnime(StoreAnime instance);
+    partial void DeleteStoreAnime(StoreAnime instance);
+    partial void InsertStoreColor(StoreColor instance);
+    partial void UpdateStoreColor(StoreColor instance);
+    partial void DeleteStoreColor(StoreColor instance);
+    partial void InsertStoreProductColor(StoreProductColor instance);
+    partial void UpdateStoreProductColor(StoreProductColor instance);
+    partial void DeleteStoreProductColor(StoreProductColor instance);
+    partial void InsertStoreProductInventory(StoreProductInventory instance);
+    partial void UpdateStoreProductInventory(StoreProductInventory instance);
+    partial void DeleteStoreProductInventory(StoreProductInventory instance);
+    partial void InsertStoreProduct(StoreProduct instance);
+    partial void UpdateStoreProduct(StoreProduct instance);
+    partial void DeleteStoreProduct(StoreProduct instance);
+    partial void InsertStoreVariantTypeOption(StoreVariantTypeOption instance);
+    partial void UpdateStoreVariantTypeOption(StoreVariantTypeOption instance);
+    partial void DeleteStoreVariantTypeOption(StoreVariantTypeOption instance);
     #endregion
 		
 		public LinqDataContext(string connection) : 
@@ -80,73 +80,73 @@ namespace Moudle
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<AppliedUpdates> AppliedUpdates
+		public System.Data.Linq.Table<AppliedUpdate> AppliedUpdates
 		{
 			get
 			{
-				return this.GetTable<AppliedUpdates>();
+				return this.GetTable<AppliedUpdate>();
 			}
 		}
 		
-		public System.Data.Linq.Table<StoreVariantTypes> StoreVariantTypes
+		public System.Data.Linq.Table<StoreVariantType> StoreVariantTypes
 		{
 			get
 			{
-				return this.GetTable<StoreVariantTypes>();
+				return this.GetTable<StoreVariantType>();
 			}
 		}
 		
-		public System.Data.Linq.Table<StoreAnimes> StoreAnimes
+		public System.Data.Linq.Table<StoreAnime> StoreAnimes
 		{
 			get
 			{
-				return this.GetTable<StoreAnimes>();
+				return this.GetTable<StoreAnime>();
 			}
 		}
 		
-		public System.Data.Linq.Table<StoreColors> StoreColors
+		public System.Data.Linq.Table<StoreColor> StoreColors
 		{
 			get
 			{
-				return this.GetTable<StoreColors>();
+				return this.GetTable<StoreColor>();
 			}
 		}
 		
-		public System.Data.Linq.Table<StoreProductColors> StoreProductColors
+		public System.Data.Linq.Table<StoreProductColor> StoreProductColors
 		{
 			get
 			{
-				return this.GetTable<StoreProductColors>();
+				return this.GetTable<StoreProductColor>();
 			}
 		}
 		
-		public System.Data.Linq.Table<StoreProductInventories> StoreProductInventories
+		public System.Data.Linq.Table<StoreProductInventory> StoreProductInventories
 		{
 			get
 			{
-				return this.GetTable<StoreProductInventories>();
+				return this.GetTable<StoreProductInventory>();
 			}
 		}
 		
-		public System.Data.Linq.Table<StoreProducts> StoreProducts
+		public System.Data.Linq.Table<StoreProduct> StoreProducts
 		{
 			get
 			{
-				return this.GetTable<StoreProducts>();
+				return this.GetTable<StoreProduct>();
 			}
 		}
 		
-		public System.Data.Linq.Table<StoreVariantTypeOptions> StoreVariantTypeOptions
+		public System.Data.Linq.Table<StoreVariantTypeOption> StoreVariantTypeOptions
 		{
 			get
 			{
-				return this.GetTable<StoreVariantTypeOptions>();
+				return this.GetTable<StoreVariantTypeOption>();
 			}
 		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AppliedUpdates")]
-	public partial class AppliedUpdates : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class AppliedUpdate : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -169,7 +169,7 @@ namespace Moudle
     partial void OnTimestampChanged();
     #endregion
 		
-		public AppliedUpdates()
+		public AppliedUpdate()
 		{
 			OnCreated();
 		}
@@ -256,7 +256,7 @@ namespace Moudle
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StoreVariantTypes")]
-	public partial class StoreVariantTypes : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class StoreVariantType : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -269,11 +269,11 @@ namespace Moudle
 		
 		private System.Data.Linq.Binary _Timestamp;
 		
-		private EntitySet<StoreProducts> _StoreProducts;
+		private EntitySet<StoreProduct> _StoreProducts;
 		
-		private EntitySet<StoreProducts> _StoreProducts1;
+		private EntitySet<StoreProduct> _StoreProducts1;
 		
-		private EntitySet<StoreVariantTypeOptions> _StoreVariantTypeOptions;
+		private EntitySet<StoreVariantTypeOption> _StoreVariantTypeOptions;
 		
     #region 可扩展性方法定义
     partial void OnLoaded();
@@ -289,11 +289,11 @@ namespace Moudle
     partial void OnTimestampChanged();
     #endregion
 		
-		public StoreVariantTypes()
+		public StoreVariantType()
 		{
-			this._StoreProducts = new EntitySet<StoreProducts>(new Action<StoreProducts>(this.attach_StoreProducts), new Action<StoreProducts>(this.detach_StoreProducts));
-			this._StoreProducts1 = new EntitySet<StoreProducts>(new Action<StoreProducts>(this.attach_StoreProducts1), new Action<StoreProducts>(this.detach_StoreProducts1));
-			this._StoreVariantTypeOptions = new EntitySet<StoreVariantTypeOptions>(new Action<StoreVariantTypeOptions>(this.attach_StoreVariantTypeOptions), new Action<StoreVariantTypeOptions>(this.detach_StoreVariantTypeOptions));
+			this._StoreProducts = new EntitySet<StoreProduct>(new Action<StoreProduct>(this.attach_StoreProducts), new Action<StoreProduct>(this.detach_StoreProducts));
+			this._StoreProducts1 = new EntitySet<StoreProduct>(new Action<StoreProduct>(this.attach_StoreProducts1), new Action<StoreProduct>(this.detach_StoreProducts1));
+			this._StoreVariantTypeOptions = new EntitySet<StoreVariantTypeOption>(new Action<StoreVariantTypeOption>(this.attach_StoreVariantTypeOptions), new Action<StoreVariantTypeOption>(this.detach_StoreVariantTypeOptions));
 			OnCreated();
 		}
 		
@@ -377,8 +377,8 @@ namespace Moudle
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantTypes_StoreProducts", Storage="_StoreProducts", ThisKey="VariantTypeID", OtherKey="Variant1TypeID")]
-		public EntitySet<StoreProducts> StoreProducts
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantType_StoreProduct", Storage="_StoreProducts", ThisKey="VariantTypeID", OtherKey="Variant1TypeID")]
+		public EntitySet<StoreProduct> StoreProducts
 		{
 			get
 			{
@@ -390,8 +390,8 @@ namespace Moudle
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantTypes_StoreProducts1", Storage="_StoreProducts1", ThisKey="VariantTypeID", OtherKey="Variant2TypeID")]
-		public EntitySet<StoreProducts> StoreProducts1
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantType_StoreProduct1", Storage="_StoreProducts1", ThisKey="VariantTypeID", OtherKey="Variant2TypeID")]
+		public EntitySet<StoreProduct> StoreProducts1
 		{
 			get
 			{
@@ -403,8 +403,8 @@ namespace Moudle
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantTypes_StoreVariantTypeOptions", Storage="_StoreVariantTypeOptions", ThisKey="VariantTypeID", OtherKey="VariantTypeID")]
-		public EntitySet<StoreVariantTypeOptions> StoreVariantTypeOptions
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantType_StoreVariantTypeOption", Storage="_StoreVariantTypeOptions", ThisKey="VariantTypeID", OtherKey="VariantTypeID")]
+		public EntitySet<StoreVariantTypeOption> StoreVariantTypeOptions
 		{
 			get
 			{
@@ -436,45 +436,45 @@ namespace Moudle
 			}
 		}
 		
-		private void attach_StoreProducts(StoreProducts entity)
+		private void attach_StoreProducts(StoreProduct entity)
 		{
 			this.SendPropertyChanging();
-			entity.StoreVariantTypes = this;
+			entity.StoreVariantType = this;
 		}
 		
-		private void detach_StoreProducts(StoreProducts entity)
+		private void detach_StoreProducts(StoreProduct entity)
 		{
 			this.SendPropertyChanging();
-			entity.StoreVariantTypes = null;
+			entity.StoreVariantType = null;
 		}
 		
-		private void attach_StoreProducts1(StoreProducts entity)
+		private void attach_StoreProducts1(StoreProduct entity)
 		{
 			this.SendPropertyChanging();
-			entity.StoreVariantTypes1 = this;
+			entity.StoreVariantType1 = this;
 		}
 		
-		private void detach_StoreProducts1(StoreProducts entity)
+		private void detach_StoreProducts1(StoreProduct entity)
 		{
 			this.SendPropertyChanging();
-			entity.StoreVariantTypes1 = null;
+			entity.StoreVariantType1 = null;
 		}
 		
-		private void attach_StoreVariantTypeOptions(StoreVariantTypeOptions entity)
+		private void attach_StoreVariantTypeOptions(StoreVariantTypeOption entity)
 		{
 			this.SendPropertyChanging();
-			entity.StoreVariantTypes = this;
+			entity.StoreVariantType = this;
 		}
 		
-		private void detach_StoreVariantTypeOptions(StoreVariantTypeOptions entity)
+		private void detach_StoreVariantTypeOptions(StoreVariantTypeOption entity)
 		{
 			this.SendPropertyChanging();
-			entity.StoreVariantTypes = null;
+			entity.StoreVariantType = null;
 		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StoreAnimes")]
-	public partial class StoreAnimes : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class StoreAnime : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -485,7 +485,7 @@ namespace Moudle
 		
 		private System.Data.Linq.Binary _TimeStamp;
 		
-		private EntitySet<StoreProducts> _StoreProducts;
+		private EntitySet<StoreProduct> _StoreProducts;
 		
     #region 可扩展性方法定义
     partial void OnLoaded();
@@ -499,9 +499,9 @@ namespace Moudle
     partial void OnTimeStampChanged();
     #endregion
 		
-		public StoreAnimes()
+		public StoreAnime()
 		{
-			this._StoreProducts = new EntitySet<StoreProducts>(new Action<StoreProducts>(this.attach_StoreProducts), new Action<StoreProducts>(this.detach_StoreProducts));
+			this._StoreProducts = new EntitySet<StoreProduct>(new Action<StoreProduct>(this.attach_StoreProducts), new Action<StoreProduct>(this.detach_StoreProducts));
 			OnCreated();
 		}
 		
@@ -565,8 +565,8 @@ namespace Moudle
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreAnimes_StoreProducts", Storage="_StoreProducts", ThisKey="AnimeID", OtherKey="AnimeID")]
-		public EntitySet<StoreProducts> StoreProducts
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreAnime_StoreProduct", Storage="_StoreProducts", ThisKey="AnimeID", OtherKey="AnimeID")]
+		public EntitySet<StoreProduct> StoreProducts
 		{
 			get
 			{
@@ -598,21 +598,21 @@ namespace Moudle
 			}
 		}
 		
-		private void attach_StoreProducts(StoreProducts entity)
+		private void attach_StoreProducts(StoreProduct entity)
 		{
 			this.SendPropertyChanging();
-			entity.StoreAnimes = this;
+			entity.StoreAnime = this;
 		}
 		
-		private void detach_StoreProducts(StoreProducts entity)
+		private void detach_StoreProducts(StoreProduct entity)
 		{
 			this.SendPropertyChanging();
-			entity.StoreAnimes = null;
+			entity.StoreAnime = null;
 		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StoreColors")]
-	public partial class StoreColors : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class StoreColor : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -623,7 +623,7 @@ namespace Moudle
 		
 		private System.Data.Linq.Binary _Timestamp;
 		
-		private EntitySet<StoreProductColors> _StoreProductColors;
+		private EntitySet<StoreProductColor> _StoreProductColors;
 		
     #region 可扩展性方法定义
     partial void OnLoaded();
@@ -637,9 +637,9 @@ namespace Moudle
     partial void OnTimestampChanged();
     #endregion
 		
-		public StoreColors()
+		public StoreColor()
 		{
-			this._StoreProductColors = new EntitySet<StoreProductColors>(new Action<StoreProductColors>(this.attach_StoreProductColors), new Action<StoreProductColors>(this.detach_StoreProductColors));
+			this._StoreProductColors = new EntitySet<StoreProductColor>(new Action<StoreProductColor>(this.attach_StoreProductColors), new Action<StoreProductColor>(this.detach_StoreProductColors));
 			OnCreated();
 		}
 		
@@ -703,8 +703,8 @@ namespace Moudle
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreColors_StoreProductColors", Storage="_StoreProductColors", ThisKey="ColorID", OtherKey="ColorID")]
-		public EntitySet<StoreProductColors> StoreProductColors
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreColor_StoreProductColor", Storage="_StoreProductColors", ThisKey="ColorID", OtherKey="ColorID")]
+		public EntitySet<StoreProductColor> StoreProductColors
 		{
 			get
 			{
@@ -736,21 +736,21 @@ namespace Moudle
 			}
 		}
 		
-		private void attach_StoreProductColors(StoreProductColors entity)
+		private void attach_StoreProductColors(StoreProductColor entity)
 		{
 			this.SendPropertyChanging();
-			entity.StoreColors = this;
+			entity.StoreColor = this;
 		}
 		
-		private void detach_StoreProductColors(StoreProductColors entity)
+		private void detach_StoreProductColors(StoreProductColor entity)
 		{
 			this.SendPropertyChanging();
-			entity.StoreColors = null;
+			entity.StoreColor = null;
 		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StoreProductColors")]
-	public partial class StoreProductColors : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class StoreProductColor : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -761,9 +761,9 @@ namespace Moudle
 		
 		private System.Data.Linq.Binary _Timestamp;
 		
-		private EntityRef<StoreColors> _StoreColors;
+		private EntityRef<StoreColor> _StoreColor;
 		
-		private EntityRef<StoreProducts> _StoreProducts;
+		private EntityRef<StoreProduct> _StoreProduct;
 		
     #region 可扩展性方法定义
     partial void OnLoaded();
@@ -777,10 +777,10 @@ namespace Moudle
     partial void OnTimestampChanged();
     #endregion
 		
-		public StoreProductColors()
+		public StoreProductColor()
 		{
-			this._StoreColors = default(EntityRef<StoreColors>);
-			this._StoreProducts = default(EntityRef<StoreProducts>);
+			this._StoreColor = default(EntityRef<StoreColor>);
+			this._StoreProduct = default(EntityRef<StoreProduct>);
 			OnCreated();
 		}
 		
@@ -795,7 +795,7 @@ namespace Moudle
 			{
 				if ((this._ProductID != value))
 				{
-					if (this._StoreProducts.HasLoadedOrAssignedValue)
+					if (this._StoreProduct.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -819,7 +819,7 @@ namespace Moudle
 			{
 				if ((this._ColorID != value))
 				{
-					if (this._StoreColors.HasLoadedOrAssignedValue)
+					if (this._StoreColor.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -852,26 +852,26 @@ namespace Moudle
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreColors_StoreProductColors", Storage="_StoreColors", ThisKey="ColorID", OtherKey="ColorID", IsForeignKey=true)]
-		public StoreColors StoreColors
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreColor_StoreProductColor", Storage="_StoreColor", ThisKey="ColorID", OtherKey="ColorID", IsForeignKey=true)]
+		public StoreColor StoreColor
 		{
 			get
 			{
-				return this._StoreColors.Entity;
+				return this._StoreColor.Entity;
 			}
 			set
 			{
-				StoreColors previousValue = this._StoreColors.Entity;
+				StoreColor previousValue = this._StoreColor.Entity;
 				if (((previousValue != value) 
-							|| (this._StoreColors.HasLoadedOrAssignedValue == false)))
+							|| (this._StoreColor.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._StoreColors.Entity = null;
+						this._StoreColor.Entity = null;
 						previousValue.StoreProductColors.Remove(this);
 					}
-					this._StoreColors.Entity = value;
+					this._StoreColor.Entity = value;
 					if ((value != null))
 					{
 						value.StoreProductColors.Add(this);
@@ -881,31 +881,31 @@ namespace Moudle
 					{
 						this._ColorID = default(int);
 					}
-					this.SendPropertyChanged("StoreColors");
+					this.SendPropertyChanged("StoreColor");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreProducts_StoreProductColors", Storage="_StoreProducts", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public StoreProducts StoreProducts
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreProduct_StoreProductColor", Storage="_StoreProduct", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public StoreProduct StoreProduct
 		{
 			get
 			{
-				return this._StoreProducts.Entity;
+				return this._StoreProduct.Entity;
 			}
 			set
 			{
-				StoreProducts previousValue = this._StoreProducts.Entity;
+				StoreProduct previousValue = this._StoreProduct.Entity;
 				if (((previousValue != value) 
-							|| (this._StoreProducts.HasLoadedOrAssignedValue == false)))
+							|| (this._StoreProduct.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._StoreProducts.Entity = null;
+						this._StoreProduct.Entity = null;
 						previousValue.StoreProductColors.Remove(this);
 					}
-					this._StoreProducts.Entity = value;
+					this._StoreProduct.Entity = value;
 					if ((value != null))
 					{
 						value.StoreProductColors.Add(this);
@@ -915,7 +915,7 @@ namespace Moudle
 					{
 						this._ProductID = default(long);
 					}
-					this.SendPropertyChanged("StoreProducts");
+					this.SendPropertyChanged("StoreProduct");
 				}
 			}
 		}
@@ -942,7 +942,7 @@ namespace Moudle
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StoreProductInventories")]
-	public partial class StoreProductInventories : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class StoreProductInventory : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -965,9 +965,9 @@ namespace Moudle
 		
 		private System.Data.Linq.Binary _Timestamp;
 		
-		private EntityRef<StoreVariantTypeOptions> _StoreVariantTypeOptions;
+		private EntityRef<StoreVariantTypeOption> _StoreVariantTypeOption;
 		
-		private EntityRef<StoreVariantTypeOptions> _StoreVariantTypeOptions1;
+		private EntityRef<StoreVariantTypeOption> _StoreVariantTypeOption1;
 		
     #region 可扩展性方法定义
     partial void OnLoaded();
@@ -993,10 +993,10 @@ namespace Moudle
     partial void OnTimestampChanged();
     #endregion
 		
-		public StoreProductInventories()
+		public StoreProductInventory()
 		{
-			this._StoreVariantTypeOptions = default(EntityRef<StoreVariantTypeOptions>);
-			this._StoreVariantTypeOptions1 = default(EntityRef<StoreVariantTypeOptions>);
+			this._StoreVariantTypeOption = default(EntityRef<StoreVariantTypeOption>);
+			this._StoreVariantTypeOption1 = default(EntityRef<StoreVariantTypeOption>);
 			OnCreated();
 		}
 		
@@ -1131,7 +1131,7 @@ namespace Moudle
 			{
 				if ((this._Variant1OptionID != value))
 				{
-					if (this._StoreVariantTypeOptions.HasLoadedOrAssignedValue)
+					if (this._StoreVariantTypeOption.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1155,7 +1155,7 @@ namespace Moudle
 			{
 				if ((this._Variant2OptionID != value))
 				{
-					if (this._StoreVariantTypeOptions1.HasLoadedOrAssignedValue)
+					if (this._StoreVariantTypeOption1.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1188,26 +1188,26 @@ namespace Moudle
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantTypeOptions_StoreProductInventories", Storage="_StoreVariantTypeOptions", ThisKey="Variant1OptionID", OtherKey="VariantOptionID", IsForeignKey=true)]
-		public StoreVariantTypeOptions StoreVariantTypeOptions
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantTypeOption_StoreProductInventory", Storage="_StoreVariantTypeOption", ThisKey="Variant1OptionID", OtherKey="VariantOptionID", IsForeignKey=true)]
+		public StoreVariantTypeOption StoreVariantTypeOption
 		{
 			get
 			{
-				return this._StoreVariantTypeOptions.Entity;
+				return this._StoreVariantTypeOption.Entity;
 			}
 			set
 			{
-				StoreVariantTypeOptions previousValue = this._StoreVariantTypeOptions.Entity;
+				StoreVariantTypeOption previousValue = this._StoreVariantTypeOption.Entity;
 				if (((previousValue != value) 
-							|| (this._StoreVariantTypeOptions.HasLoadedOrAssignedValue == false)))
+							|| (this._StoreVariantTypeOption.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._StoreVariantTypeOptions.Entity = null;
+						this._StoreVariantTypeOption.Entity = null;
 						previousValue.StoreProductInventories.Remove(this);
 					}
-					this._StoreVariantTypeOptions.Entity = value;
+					this._StoreVariantTypeOption.Entity = value;
 					if ((value != null))
 					{
 						value.StoreProductInventories.Add(this);
@@ -1217,31 +1217,31 @@ namespace Moudle
 					{
 						this._Variant1OptionID = default(Nullable<long>);
 					}
-					this.SendPropertyChanged("StoreVariantTypeOptions");
+					this.SendPropertyChanged("StoreVariantTypeOption");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantTypeOptions_StoreProductInventories1", Storage="_StoreVariantTypeOptions1", ThisKey="Variant2OptionID", OtherKey="VariantOptionID", IsForeignKey=true)]
-		public StoreVariantTypeOptions StoreVariantTypeOptions1
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantTypeOption_StoreProductInventory1", Storage="_StoreVariantTypeOption1", ThisKey="Variant2OptionID", OtherKey="VariantOptionID", IsForeignKey=true)]
+		public StoreVariantTypeOption StoreVariantTypeOption1
 		{
 			get
 			{
-				return this._StoreVariantTypeOptions1.Entity;
+				return this._StoreVariantTypeOption1.Entity;
 			}
 			set
 			{
-				StoreVariantTypeOptions previousValue = this._StoreVariantTypeOptions1.Entity;
+				StoreVariantTypeOption previousValue = this._StoreVariantTypeOption1.Entity;
 				if (((previousValue != value) 
-							|| (this._StoreVariantTypeOptions1.HasLoadedOrAssignedValue == false)))
+							|| (this._StoreVariantTypeOption1.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._StoreVariantTypeOptions1.Entity = null;
+						this._StoreVariantTypeOption1.Entity = null;
 						previousValue.StoreProductInventories1.Remove(this);
 					}
-					this._StoreVariantTypeOptions1.Entity = value;
+					this._StoreVariantTypeOption1.Entity = value;
 					if ((value != null))
 					{
 						value.StoreProductInventories1.Add(this);
@@ -1251,7 +1251,7 @@ namespace Moudle
 					{
 						this._Variant2OptionID = default(Nullable<long>);
 					}
-					this.SendPropertyChanged("StoreVariantTypeOptions1");
+					this.SendPropertyChanged("StoreVariantTypeOption1");
 				}
 			}
 		}
@@ -1278,7 +1278,7 @@ namespace Moudle
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StoreProducts")]
-	public partial class StoreProducts : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class StoreProduct : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1325,13 +1325,13 @@ namespace Moudle
 		
 		private System.Data.Linq.Binary _Timestamp;
 		
-		private EntitySet<StoreProductColors> _StoreProductColors;
+		private EntitySet<StoreProductColor> _StoreProductColors;
 		
-		private EntityRef<StoreAnimes> _StoreAnimes;
+		private EntityRef<StoreAnime> _StoreAnime;
 		
-		private EntityRef<StoreVariantTypes> _StoreVariantTypes;
+		private EntityRef<StoreVariantType> _StoreVariantType;
 		
-		private EntityRef<StoreVariantTypes> _StoreVariantTypes1;
+		private EntityRef<StoreVariantType> _StoreVariantType1;
 		
     #region 可扩展性方法定义
     partial void OnLoaded();
@@ -1381,12 +1381,12 @@ namespace Moudle
     partial void OnTimestampChanged();
     #endregion
 		
-		public StoreProducts()
+		public StoreProduct()
 		{
-			this._StoreProductColors = new EntitySet<StoreProductColors>(new Action<StoreProductColors>(this.attach_StoreProductColors), new Action<StoreProductColors>(this.detach_StoreProductColors));
-			this._StoreAnimes = default(EntityRef<StoreAnimes>);
-			this._StoreVariantTypes = default(EntityRef<StoreVariantTypes>);
-			this._StoreVariantTypes1 = default(EntityRef<StoreVariantTypes>);
+			this._StoreProductColors = new EntitySet<StoreProductColor>(new Action<StoreProductColor>(this.attach_StoreProductColors), new Action<StoreProductColor>(this.detach_StoreProductColors));
+			this._StoreAnime = default(EntityRef<StoreAnime>);
+			this._StoreVariantType = default(EntityRef<StoreVariantType>);
+			this._StoreVariantType1 = default(EntityRef<StoreVariantType>);
 			OnCreated();
 		}
 		
@@ -1421,7 +1421,7 @@ namespace Moudle
 			{
 				if ((this._AnimeID != value))
 				{
-					if (this._StoreAnimes.HasLoadedOrAssignedValue)
+					if (this._StoreAnime.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1765,7 +1765,7 @@ namespace Moudle
 			{
 				if ((this._Variant1TypeID != value))
 				{
-					if (this._StoreVariantTypes.HasLoadedOrAssignedValue)
+					if (this._StoreVariantType.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1789,7 +1789,7 @@ namespace Moudle
 			{
 				if ((this._Variant2TypeID != value))
 				{
-					if (this._StoreVariantTypes1.HasLoadedOrAssignedValue)
+					if (this._StoreVariantType1.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1822,8 +1822,8 @@ namespace Moudle
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreProducts_StoreProductColors", Storage="_StoreProductColors", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<StoreProductColors> StoreProductColors
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreProduct_StoreProductColor", Storage="_StoreProductColors", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<StoreProductColor> StoreProductColors
 		{
 			get
 			{
@@ -1835,26 +1835,26 @@ namespace Moudle
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreAnimes_StoreProducts", Storage="_StoreAnimes", ThisKey="AnimeID", OtherKey="AnimeID", IsForeignKey=true)]
-		public StoreAnimes StoreAnimes
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreAnime_StoreProduct", Storage="_StoreAnime", ThisKey="AnimeID", OtherKey="AnimeID", IsForeignKey=true)]
+		public StoreAnime StoreAnime
 		{
 			get
 			{
-				return this._StoreAnimes.Entity;
+				return this._StoreAnime.Entity;
 			}
 			set
 			{
-				StoreAnimes previousValue = this._StoreAnimes.Entity;
+				StoreAnime previousValue = this._StoreAnime.Entity;
 				if (((previousValue != value) 
-							|| (this._StoreAnimes.HasLoadedOrAssignedValue == false)))
+							|| (this._StoreAnime.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._StoreAnimes.Entity = null;
+						this._StoreAnime.Entity = null;
 						previousValue.StoreProducts.Remove(this);
 					}
-					this._StoreAnimes.Entity = value;
+					this._StoreAnime.Entity = value;
 					if ((value != null))
 					{
 						value.StoreProducts.Add(this);
@@ -1864,31 +1864,31 @@ namespace Moudle
 					{
 						this._AnimeID = default(int);
 					}
-					this.SendPropertyChanged("StoreAnimes");
+					this.SendPropertyChanged("StoreAnime");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantTypes_StoreProducts", Storage="_StoreVariantTypes", ThisKey="Variant1TypeID", OtherKey="VariantTypeID", IsForeignKey=true)]
-		public StoreVariantTypes StoreVariantTypes
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantType_StoreProduct", Storage="_StoreVariantType", ThisKey="Variant1TypeID", OtherKey="VariantTypeID", IsForeignKey=true)]
+		public StoreVariantType StoreVariantType
 		{
 			get
 			{
-				return this._StoreVariantTypes.Entity;
+				return this._StoreVariantType.Entity;
 			}
 			set
 			{
-				StoreVariantTypes previousValue = this._StoreVariantTypes.Entity;
+				StoreVariantType previousValue = this._StoreVariantType.Entity;
 				if (((previousValue != value) 
-							|| (this._StoreVariantTypes.HasLoadedOrAssignedValue == false)))
+							|| (this._StoreVariantType.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._StoreVariantTypes.Entity = null;
+						this._StoreVariantType.Entity = null;
 						previousValue.StoreProducts.Remove(this);
 					}
-					this._StoreVariantTypes.Entity = value;
+					this._StoreVariantType.Entity = value;
 					if ((value != null))
 					{
 						value.StoreProducts.Add(this);
@@ -1898,31 +1898,31 @@ namespace Moudle
 					{
 						this._Variant1TypeID = default(Nullable<long>);
 					}
-					this.SendPropertyChanged("StoreVariantTypes");
+					this.SendPropertyChanged("StoreVariantType");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantTypes_StoreProducts1", Storage="_StoreVariantTypes1", ThisKey="Variant2TypeID", OtherKey="VariantTypeID", IsForeignKey=true)]
-		public StoreVariantTypes StoreVariantTypes1
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantType_StoreProduct1", Storage="_StoreVariantType1", ThisKey="Variant2TypeID", OtherKey="VariantTypeID", IsForeignKey=true)]
+		public StoreVariantType StoreVariantType1
 		{
 			get
 			{
-				return this._StoreVariantTypes1.Entity;
+				return this._StoreVariantType1.Entity;
 			}
 			set
 			{
-				StoreVariantTypes previousValue = this._StoreVariantTypes1.Entity;
+				StoreVariantType previousValue = this._StoreVariantType1.Entity;
 				if (((previousValue != value) 
-							|| (this._StoreVariantTypes1.HasLoadedOrAssignedValue == false)))
+							|| (this._StoreVariantType1.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._StoreVariantTypes1.Entity = null;
+						this._StoreVariantType1.Entity = null;
 						previousValue.StoreProducts1.Remove(this);
 					}
-					this._StoreVariantTypes1.Entity = value;
+					this._StoreVariantType1.Entity = value;
 					if ((value != null))
 					{
 						value.StoreProducts1.Add(this);
@@ -1932,7 +1932,7 @@ namespace Moudle
 					{
 						this._Variant2TypeID = default(Nullable<long>);
 					}
-					this.SendPropertyChanged("StoreVariantTypes1");
+					this.SendPropertyChanged("StoreVariantType1");
 				}
 			}
 		}
@@ -1957,21 +1957,21 @@ namespace Moudle
 			}
 		}
 		
-		private void attach_StoreProductColors(StoreProductColors entity)
+		private void attach_StoreProductColors(StoreProductColor entity)
 		{
 			this.SendPropertyChanging();
-			entity.StoreProducts = this;
+			entity.StoreProduct = this;
 		}
 		
-		private void detach_StoreProductColors(StoreProductColors entity)
+		private void detach_StoreProductColors(StoreProductColor entity)
 		{
 			this.SendPropertyChanging();
-			entity.StoreProducts = null;
+			entity.StoreProduct = null;
 		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StoreVariantTypeOptions")]
-	public partial class StoreVariantTypeOptions : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class StoreVariantTypeOption : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1986,11 +1986,11 @@ namespace Moudle
 		
 		private System.Data.Linq.Binary _Timestamp;
 		
-		private EntitySet<StoreProductInventories> _StoreProductInventories;
+		private EntitySet<StoreProductInventory> _StoreProductInventories;
 		
-		private EntitySet<StoreProductInventories> _StoreProductInventories1;
+		private EntitySet<StoreProductInventory> _StoreProductInventories1;
 		
-		private EntityRef<StoreVariantTypes> _StoreVariantTypes;
+		private EntityRef<StoreVariantType> _StoreVariantType;
 		
     #region 可扩展性方法定义
     partial void OnLoaded();
@@ -2008,11 +2008,11 @@ namespace Moudle
     partial void OnTimestampChanged();
     #endregion
 		
-		public StoreVariantTypeOptions()
+		public StoreVariantTypeOption()
 		{
-			this._StoreProductInventories = new EntitySet<StoreProductInventories>(new Action<StoreProductInventories>(this.attach_StoreProductInventories), new Action<StoreProductInventories>(this.detach_StoreProductInventories));
-			this._StoreProductInventories1 = new EntitySet<StoreProductInventories>(new Action<StoreProductInventories>(this.attach_StoreProductInventories1), new Action<StoreProductInventories>(this.detach_StoreProductInventories1));
-			this._StoreVariantTypes = default(EntityRef<StoreVariantTypes>);
+			this._StoreProductInventories = new EntitySet<StoreProductInventory>(new Action<StoreProductInventory>(this.attach_StoreProductInventories), new Action<StoreProductInventory>(this.detach_StoreProductInventories));
+			this._StoreProductInventories1 = new EntitySet<StoreProductInventory>(new Action<StoreProductInventory>(this.attach_StoreProductInventories1), new Action<StoreProductInventory>(this.detach_StoreProductInventories1));
+			this._StoreVariantType = default(EntityRef<StoreVariantType>);
 			OnCreated();
 		}
 		
@@ -2047,7 +2047,7 @@ namespace Moudle
 			{
 				if ((this._VariantTypeID != value))
 				{
-					if (this._StoreVariantTypes.HasLoadedOrAssignedValue)
+					if (this._StoreVariantType.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -2120,8 +2120,8 @@ namespace Moudle
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantTypeOptions_StoreProductInventories", Storage="_StoreProductInventories", ThisKey="VariantOptionID", OtherKey="Variant1OptionID")]
-		public EntitySet<StoreProductInventories> StoreProductInventories
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantTypeOption_StoreProductInventory", Storage="_StoreProductInventories", ThisKey="VariantOptionID", OtherKey="Variant1OptionID")]
+		public EntitySet<StoreProductInventory> StoreProductInventories
 		{
 			get
 			{
@@ -2133,8 +2133,8 @@ namespace Moudle
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantTypeOptions_StoreProductInventories1", Storage="_StoreProductInventories1", ThisKey="VariantOptionID", OtherKey="Variant2OptionID")]
-		public EntitySet<StoreProductInventories> StoreProductInventories1
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantTypeOption_StoreProductInventory1", Storage="_StoreProductInventories1", ThisKey="VariantOptionID", OtherKey="Variant2OptionID")]
+		public EntitySet<StoreProductInventory> StoreProductInventories1
 		{
 			get
 			{
@@ -2146,26 +2146,26 @@ namespace Moudle
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantTypes_StoreVariantTypeOptions", Storage="_StoreVariantTypes", ThisKey="VariantTypeID", OtherKey="VariantTypeID", IsForeignKey=true)]
-		public StoreVariantTypes StoreVariantTypes
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantType_StoreVariantTypeOption", Storage="_StoreVariantType", ThisKey="VariantTypeID", OtherKey="VariantTypeID", IsForeignKey=true)]
+		public StoreVariantType StoreVariantType
 		{
 			get
 			{
-				return this._StoreVariantTypes.Entity;
+				return this._StoreVariantType.Entity;
 			}
 			set
 			{
-				StoreVariantTypes previousValue = this._StoreVariantTypes.Entity;
+				StoreVariantType previousValue = this._StoreVariantType.Entity;
 				if (((previousValue != value) 
-							|| (this._StoreVariantTypes.HasLoadedOrAssignedValue == false)))
+							|| (this._StoreVariantType.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._StoreVariantTypes.Entity = null;
+						this._StoreVariantType.Entity = null;
 						previousValue.StoreVariantTypeOptions.Remove(this);
 					}
-					this._StoreVariantTypes.Entity = value;
+					this._StoreVariantType.Entity = value;
 					if ((value != null))
 					{
 						value.StoreVariantTypeOptions.Add(this);
@@ -2175,7 +2175,7 @@ namespace Moudle
 					{
 						this._VariantTypeID = default(long);
 					}
-					this.SendPropertyChanged("StoreVariantTypes");
+					this.SendPropertyChanged("StoreVariantType");
 				}
 			}
 		}
@@ -2200,28 +2200,28 @@ namespace Moudle
 			}
 		}
 		
-		private void attach_StoreProductInventories(StoreProductInventories entity)
+		private void attach_StoreProductInventories(StoreProductInventory entity)
 		{
 			this.SendPropertyChanging();
-			entity.StoreVariantTypeOptions = this;
+			entity.StoreVariantTypeOption = this;
 		}
 		
-		private void detach_StoreProductInventories(StoreProductInventories entity)
+		private void detach_StoreProductInventories(StoreProductInventory entity)
 		{
 			this.SendPropertyChanging();
-			entity.StoreVariantTypeOptions = null;
+			entity.StoreVariantTypeOption = null;
 		}
 		
-		private void attach_StoreProductInventories1(StoreProductInventories entity)
+		private void attach_StoreProductInventories1(StoreProductInventory entity)
 		{
 			this.SendPropertyChanging();
-			entity.StoreVariantTypeOptions1 = this;
+			entity.StoreVariantTypeOption1 = this;
 		}
 		
-		private void detach_StoreProductInventories1(StoreProductInventories entity)
+		private void detach_StoreProductInventories1(StoreProductInventory entity)
 		{
 			this.SendPropertyChanging();
-			entity.StoreVariantTypeOptions1 = null;
+			entity.StoreVariantTypeOption1 = null;
 		}
 	}
 }
