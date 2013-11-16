@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="costar" Class="LinqDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=WIN-9FSEREGNQIL\SQLEXPRESS;Initial Catalog=costar;Integrated Security=True" SettingsObjectName="Moudle.Properties.Settings" SettingsPropertyName="costarConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AppliedUpdates" Member="AppliedUpdates">
     <Type Name="AppliedUpdate">
       <Column Name="UpdateID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -96,6 +97,31 @@
       <Association Name="StoreVariantTypeOption_StoreProductInventory" Member="StoreProductInventories" ThisKey="VariantOptionID" OtherKey="Variant1OptionID" Type="StoreProductInventory" />
       <Association Name="StoreVariantTypeOption_StoreProductInventory1" Member="StoreProductInventories1" ThisKey="VariantOptionID" OtherKey="Variant2OptionID" Type="StoreProductInventory" />
       <Association Name="StoreVariantType_StoreVariantTypeOption" Member="StoreVariantType" ThisKey="VariantTypeID" OtherKey="VariantTypeID" Type="StoreVariantType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AccountNewsletters" Member="AccountNewsletters">
+    <Type Name="AccountNewsletter">
+      <Column Name="AccountID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NewsletterID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Opened" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FirstOpenDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ErrorMessage" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="IsSent" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="NewsLetter_AccountNewsletter" Member="NewsLetter" ThisKey="NewsletterID" OtherKey="NewsLetterID" Type="NewsLetter" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NewsLetters" Member="NewsLetters">
+    <Type Name="NewsLetter">
+      <Column Name="NewsLetterID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Subject" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Body" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="IsSent" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SendDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CampaignCode" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Association Name="NewsLetter_AccountNewsletter" Member="AccountNewsletters" ThisKey="NewsLetterID" OtherKey="NewsletterID" Type="AccountNewsletter" />
+      <Association Name="NewsLetter_NewsLetter" Member="NewsLetter2" ThisKey="NewsLetterID" OtherKey="NewsLetterID" Type="NewsLetter" Cardinality="One" />
+      <Association Name="NewsLetter_NewsLetter" Member="NewsLetter1" ThisKey="NewsLetterID" OtherKey="NewsLetterID" Type="NewsLetter" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
