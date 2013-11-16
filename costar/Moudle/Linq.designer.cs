@@ -45,6 +45,9 @@ namespace Moudle
     partial void InsertStoreProductColors(StoreProductColors instance);
     partial void UpdateStoreProductColors(StoreProductColors instance);
     partial void DeleteStoreProductColors(StoreProductColors instance);
+    partial void InsertStoreProductInventories(StoreProductInventories instance);
+    partial void UpdateStoreProductInventories(StoreProductInventories instance);
+    partial void DeleteStoreProductInventories(StoreProductInventories instance);
     partial void InsertStoreProducts(StoreProducts instance);
     partial void UpdateStoreProducts(StoreProducts instance);
     partial void DeleteStoreProducts(StoreProducts instance);
@@ -114,6 +117,14 @@ namespace Moudle
 			get
 			{
 				return this.GetTable<StoreProductColors>();
+			}
+		}
+		
+		public System.Data.Linq.Table<StoreProductInventories> StoreProductInventories
+		{
+			get
+			{
+				return this.GetTable<StoreProductInventories>();
 			}
 		}
 		
@@ -930,6 +941,342 @@ namespace Moudle
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StoreProductInventories")]
+	public partial class StoreProductInventories : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _InventoryID;
+		
+		private long _ProductID;
+		
+		private int _QtyAvail;
+		
+		private int _QtySold;
+		
+		private int _QtyOnHold;
+		
+		private int _SortOrder;
+		
+		private System.Nullable<long> _Variant1OptionID;
+		
+		private System.Nullable<long> _Variant2OptionID;
+		
+		private System.Data.Linq.Binary _Timestamp;
+		
+		private EntityRef<StoreVariantTypeOptions> _StoreVariantTypeOptions;
+		
+		private EntityRef<StoreVariantTypeOptions> _StoreVariantTypeOptions1;
+		
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnInventoryIDChanging(long value);
+    partial void OnInventoryIDChanged();
+    partial void OnProductIDChanging(long value);
+    partial void OnProductIDChanged();
+    partial void OnQtyAvailChanging(int value);
+    partial void OnQtyAvailChanged();
+    partial void OnQtySoldChanging(int value);
+    partial void OnQtySoldChanged();
+    partial void OnQtyOnHoldChanging(int value);
+    partial void OnQtyOnHoldChanged();
+    partial void OnSortOrderChanging(int value);
+    partial void OnSortOrderChanged();
+    partial void OnVariant1OptionIDChanging(System.Nullable<long> value);
+    partial void OnVariant1OptionIDChanged();
+    partial void OnVariant2OptionIDChanging(System.Nullable<long> value);
+    partial void OnVariant2OptionIDChanged();
+    partial void OnTimestampChanging(System.Data.Linq.Binary value);
+    partial void OnTimestampChanged();
+    #endregion
+		
+		public StoreProductInventories()
+		{
+			this._StoreVariantTypeOptions = default(EntityRef<StoreVariantTypeOptions>);
+			this._StoreVariantTypeOptions1 = default(EntityRef<StoreVariantTypeOptions>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InventoryID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
+		public long InventoryID
+		{
+			get
+			{
+				return this._InventoryID;
+			}
+			set
+			{
+				if ((this._InventoryID != value))
+				{
+					this.OnInventoryIDChanging(value);
+					this.SendPropertyChanging();
+					this._InventoryID = value;
+					this.SendPropertyChanged("InventoryID");
+					this.OnInventoryIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", DbType="BigInt NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public long ProductID
+		{
+			get
+			{
+				return this._ProductID;
+			}
+			set
+			{
+				if ((this._ProductID != value))
+				{
+					this.OnProductIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProductID = value;
+					this.SendPropertyChanged("ProductID");
+					this.OnProductIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QtyAvail", DbType="Int NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public int QtyAvail
+		{
+			get
+			{
+				return this._QtyAvail;
+			}
+			set
+			{
+				if ((this._QtyAvail != value))
+				{
+					this.OnQtyAvailChanging(value);
+					this.SendPropertyChanging();
+					this._QtyAvail = value;
+					this.SendPropertyChanged("QtyAvail");
+					this.OnQtyAvailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QtySold", DbType="Int NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public int QtySold
+		{
+			get
+			{
+				return this._QtySold;
+			}
+			set
+			{
+				if ((this._QtySold != value))
+				{
+					this.OnQtySoldChanging(value);
+					this.SendPropertyChanging();
+					this._QtySold = value;
+					this.SendPropertyChanged("QtySold");
+					this.OnQtySoldChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QtyOnHold", DbType="Int NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public int QtyOnHold
+		{
+			get
+			{
+				return this._QtyOnHold;
+			}
+			set
+			{
+				if ((this._QtyOnHold != value))
+				{
+					this.OnQtyOnHoldChanging(value);
+					this.SendPropertyChanging();
+					this._QtyOnHold = value;
+					this.SendPropertyChanged("QtyOnHold");
+					this.OnQtyOnHoldChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SortOrder", DbType="Int NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public int SortOrder
+		{
+			get
+			{
+				return this._SortOrder;
+			}
+			set
+			{
+				if ((this._SortOrder != value))
+				{
+					this.OnSortOrderChanging(value);
+					this.SendPropertyChanging();
+					this._SortOrder = value;
+					this.SendPropertyChanged("SortOrder");
+					this.OnSortOrderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Variant1OptionID", DbType="BigInt", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<long> Variant1OptionID
+		{
+			get
+			{
+				return this._Variant1OptionID;
+			}
+			set
+			{
+				if ((this._Variant1OptionID != value))
+				{
+					if (this._StoreVariantTypeOptions.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnVariant1OptionIDChanging(value);
+					this.SendPropertyChanging();
+					this._Variant1OptionID = value;
+					this.SendPropertyChanged("Variant1OptionID");
+					this.OnVariant1OptionIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Variant2OptionID", DbType="BigInt", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<long> Variant2OptionID
+		{
+			get
+			{
+				return this._Variant2OptionID;
+			}
+			set
+			{
+				if ((this._Variant2OptionID != value))
+				{
+					if (this._StoreVariantTypeOptions1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnVariant2OptionIDChanging(value);
+					this.SendPropertyChanging();
+					this._Variant2OptionID = value;
+					this.SendPropertyChanged("Variant2OptionID");
+					this.OnVariant2OptionIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Timestamp", AutoSync=AutoSync.Always, DbType="rowversion NOT NULL", CanBeNull=false, IsDbGenerated=true, IsVersion=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Timestamp
+		{
+			get
+			{
+				return this._Timestamp;
+			}
+			set
+			{
+				if ((this._Timestamp != value))
+				{
+					this.OnTimestampChanging(value);
+					this.SendPropertyChanging();
+					this._Timestamp = value;
+					this.SendPropertyChanged("Timestamp");
+					this.OnTimestampChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantTypeOptions_StoreProductInventories", Storage="_StoreVariantTypeOptions", ThisKey="Variant1OptionID", OtherKey="VariantOptionID", IsForeignKey=true)]
+		public StoreVariantTypeOptions StoreVariantTypeOptions
+		{
+			get
+			{
+				return this._StoreVariantTypeOptions.Entity;
+			}
+			set
+			{
+				StoreVariantTypeOptions previousValue = this._StoreVariantTypeOptions.Entity;
+				if (((previousValue != value) 
+							|| (this._StoreVariantTypeOptions.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._StoreVariantTypeOptions.Entity = null;
+						previousValue.StoreProductInventories.Remove(this);
+					}
+					this._StoreVariantTypeOptions.Entity = value;
+					if ((value != null))
+					{
+						value.StoreProductInventories.Add(this);
+						this._Variant1OptionID = value.VariantOptionID;
+					}
+					else
+					{
+						this._Variant1OptionID = default(Nullable<long>);
+					}
+					this.SendPropertyChanged("StoreVariantTypeOptions");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantTypeOptions_StoreProductInventories1", Storage="_StoreVariantTypeOptions1", ThisKey="Variant2OptionID", OtherKey="VariantOptionID", IsForeignKey=true)]
+		public StoreVariantTypeOptions StoreVariantTypeOptions1
+		{
+			get
+			{
+				return this._StoreVariantTypeOptions1.Entity;
+			}
+			set
+			{
+				StoreVariantTypeOptions previousValue = this._StoreVariantTypeOptions1.Entity;
+				if (((previousValue != value) 
+							|| (this._StoreVariantTypeOptions1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._StoreVariantTypeOptions1.Entity = null;
+						previousValue.StoreProductInventories1.Remove(this);
+					}
+					this._StoreVariantTypeOptions1.Entity = value;
+					if ((value != null))
+					{
+						value.StoreProductInventories1.Add(this);
+						this._Variant2OptionID = value.VariantOptionID;
+					}
+					else
+					{
+						this._Variant2OptionID = default(Nullable<long>);
+					}
+					this.SendPropertyChanged("StoreVariantTypeOptions1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StoreProducts")]
 	public partial class StoreProducts : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1307,7 +1654,7 @@ namespace Moudle
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RetailPrice", DbType="SmallMoney", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RetailPrice", DbType="Decimal(9,2)", UpdateCheck=UpdateCheck.Never)]
 		public System.Nullable<decimal> RetailPrice
 		{
 			get
@@ -1327,7 +1674,7 @@ namespace Moudle
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalePrice", DbType="SmallMoney NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalePrice", DbType="Decimal(9,2) NOT NULL", UpdateCheck=UpdateCheck.Never)]
 		public decimal SalePrice
 		{
 			get
@@ -1347,7 +1694,7 @@ namespace Moudle
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VIPPrice", DbType="SmallMoney", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VIPPrice", DbType="Decimal(9,2)", UpdateCheck=UpdateCheck.Never)]
 		public System.Nullable<decimal> VIPPrice
 		{
 			get
@@ -1639,6 +1986,10 @@ namespace Moudle
 		
 		private System.Data.Linq.Binary _Timestamp;
 		
+		private EntitySet<StoreProductInventories> _StoreProductInventories;
+		
+		private EntitySet<StoreProductInventories> _StoreProductInventories1;
+		
 		private EntityRef<StoreVariantTypes> _StoreVariantTypes;
 		
     #region 可扩展性方法定义
@@ -1659,6 +2010,8 @@ namespace Moudle
 		
 		public StoreVariantTypeOptions()
 		{
+			this._StoreProductInventories = new EntitySet<StoreProductInventories>(new Action<StoreProductInventories>(this.attach_StoreProductInventories), new Action<StoreProductInventories>(this.detach_StoreProductInventories));
+			this._StoreProductInventories1 = new EntitySet<StoreProductInventories>(new Action<StoreProductInventories>(this.attach_StoreProductInventories1), new Action<StoreProductInventories>(this.detach_StoreProductInventories1));
 			this._StoreVariantTypes = default(EntityRef<StoreVariantTypes>);
 			OnCreated();
 		}
@@ -1767,6 +2120,32 @@ namespace Moudle
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantTypeOptions_StoreProductInventories", Storage="_StoreProductInventories", ThisKey="VariantOptionID", OtherKey="Variant1OptionID")]
+		public EntitySet<StoreProductInventories> StoreProductInventories
+		{
+			get
+			{
+				return this._StoreProductInventories;
+			}
+			set
+			{
+				this._StoreProductInventories.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantTypeOptions_StoreProductInventories1", Storage="_StoreProductInventories1", ThisKey="VariantOptionID", OtherKey="Variant2OptionID")]
+		public EntitySet<StoreProductInventories> StoreProductInventories1
+		{
+			get
+			{
+				return this._StoreProductInventories1;
+			}
+			set
+			{
+				this._StoreProductInventories1.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StoreVariantTypes_StoreVariantTypeOptions", Storage="_StoreVariantTypes", ThisKey="VariantTypeID", OtherKey="VariantTypeID", IsForeignKey=true)]
 		public StoreVariantTypes StoreVariantTypes
 		{
@@ -1819,6 +2198,30 @@ namespace Moudle
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_StoreProductInventories(StoreProductInventories entity)
+		{
+			this.SendPropertyChanging();
+			entity.StoreVariantTypeOptions = this;
+		}
+		
+		private void detach_StoreProductInventories(StoreProductInventories entity)
+		{
+			this.SendPropertyChanging();
+			entity.StoreVariantTypeOptions = null;
+		}
+		
+		private void attach_StoreProductInventories1(StoreProductInventories entity)
+		{
+			this.SendPropertyChanging();
+			entity.StoreVariantTypeOptions1 = this;
+		}
+		
+		private void detach_StoreProductInventories1(StoreProductInventories entity)
+		{
+			this.SendPropertyChanging();
+			entity.StoreVariantTypeOptions1 = null;
 		}
 	}
 }

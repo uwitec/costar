@@ -42,6 +42,21 @@
       <Association Name="StoreProducts_StoreProductColors" Member="StoreProducts" ThisKey="ProductID" OtherKey="ProductID" Type="StoreProducts" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.StoreProductInventories" Member="StoreProductInventories">
+    <Type Name="StoreProductInventories">
+      <Column Name="InventoryID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="QtyAvail" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="QtySold" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="QtyOnHold" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SortOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Variant1OptionID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Variant2OptionID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+      <Association Name="StoreVariantTypeOptions_StoreProductInventories" Member="StoreVariantTypeOptions" ThisKey="Variant1OptionID" OtherKey="VariantOptionID" Type="StoreVariantTypeOptions" IsForeignKey="true" />
+      <Association Name="StoreVariantTypeOptions_StoreProductInventories1" Member="StoreVariantTypeOptions1" ThisKey="Variant2OptionID" OtherKey="VariantOptionID" Type="StoreVariantTypeOptions" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.StoreProducts" Member="StoreProducts">
     <Type Name="StoreProducts">
       <Column Name="ProductID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -57,9 +72,9 @@
       <Column Name="ImageFile2" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
       <Column Name="ImageFile3" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
       <Column Name="ImageFile4" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="RetailPrice" Type="System.Decimal" DbType="SmallMoney" CanBeNull="true" />
-      <Column Name="SalePrice" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
-      <Column Name="VIPPrice" Type="System.Decimal" DbType="SmallMoney" CanBeNull="true" />
+      <Column Name="RetailPrice" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="SalePrice" Type="System.Decimal" DbType="Decimal(9,2) NOT NULL" CanBeNull="false" />
+      <Column Name="VIPPrice" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
       <Column Name="DeleteDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="AddeDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Variant1TypeID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
@@ -78,6 +93,8 @@
       <Column Name="Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="SortOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+      <Association Name="StoreVariantTypeOptions_StoreProductInventories" Member="StoreProductInventories" ThisKey="VariantOptionID" OtherKey="Variant1OptionID" Type="StoreProductInventories" />
+      <Association Name="StoreVariantTypeOptions_StoreProductInventories1" Member="StoreProductInventories1" ThisKey="VariantOptionID" OtherKey="Variant2OptionID" Type="StoreProductInventories" />
       <Association Name="StoreVariantTypes_StoreVariantTypeOptions" Member="StoreVariantTypes" ThisKey="VariantTypeID" OtherKey="VariantTypeID" Type="StoreVariantTypes" IsForeignKey="true" />
     </Type>
   </Table>
