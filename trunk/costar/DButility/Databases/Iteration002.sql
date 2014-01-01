@@ -224,9 +224,46 @@ GO
 
 -- *******************
 -- START 20131116-SX-2
--- CREATE AccountNewsletters Table
+-- CREATE Account Table
 -- *******************
 IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20131116-SX-2')
+BEGIN
+CREATE TABLE [dbo].[Accounts](
+	[AccountID] [bigint] IDENTITY(1,1) NOT NULL,
+	[FirstName] [nvarchar](50) NOT NULL,
+	[LastName] [nvarchar](50) NOT NULL,
+	[Email] [nvarchar](150) NOT NULL,
+	[MobileCountryID] [int] NOT NULL,
+	[Mobile] [nvarchar](50) NULL,
+	[Password] [nvarchar](250) NULL,
+	[BirthDate] [smalldatetime] NOT NULL,
+	[IsMale] [bit] NOT NULL,
+	[IsDeactivated] [bit] NOT NULL,
+	[CreateDate] [datetime] NOT NULL,
+	[LastUpdateDate] [datetime] NOT NULL,
+ CONSTRAINT [PK_Account] PRIMARY KEY CLUSTERED 
+(
+	[AccountID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+END
+GO
+
+IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20131116-SX-2')
+BEGIN
+   INSERT INTO AppliedUpdates(Name) Values ('20131116-SX-2')
+END
+GO
+-- *******************
+-- END 20131116-SX-2
+-- CREATE Account Table
+-- *******************
+
+-- *******************
+-- START 20131116-SX-3
+-- CREATE AccountNewsletters Table
+-- *******************
+IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20131116-SX-3')
 BEGIN
 	CREATE TABLE [dbo].[AccountNewsletters](
 		[AccountID] [bigint] NOT NULL,
@@ -244,51 +281,51 @@ BEGIN
 END
 GO
 
-IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20131116-SX-2')
+IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20131116-SX-3')
 BEGIN
 	ALTER TABLE [dbo].[AccountNewsletters]  WITH CHECK ADD  CONSTRAINT [FK_AccountNewsletters_Accounts] FOREIGN KEY([AccountID])
 	REFERENCES [dbo].[Accounts] ([AccountID])
 END
 GO
 
-IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20131116-SX-2')
+IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20131116-SX-3')
 BEGIN
 	ALTER TABLE [dbo].[AccountNewsletters] CHECK CONSTRAINT [FK_AccountNewsletters_Accounts]
 END
 GO
 
-IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20131116-SX-2')
+IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20131116-SX-3')
 BEGIN
 	ALTER TABLE [dbo].[AccountNewsletters]  WITH CHECK ADD  CONSTRAINT [FK_AccountNewsletters_NewsLetters] FOREIGN KEY([NewsletterID])
 	REFERENCES [dbo].[NewsLetters] ([NewsLetterID])
 END
 GO
 
-IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20131116-SX-2')
+IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20131116-SX-3')
 BEGIN
 	ALTER TABLE [dbo].[AccountNewsletters] CHECK CONSTRAINT [FK_AccountNewsletters_NewsLetters]
 END
 GO
 
-IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20131116-SX-2')
+IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20131116-SX-3')
 BEGIN
 	ALTER TABLE [dbo].[AccountNewsletters] ADD  CONSTRAINT [DF_AccountNewsletters_Opened]  DEFAULT ((0)) FOR [Opened]
 END
 GO
 
-IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20131116-SX-2')
+IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20131116-SX-3')
 BEGIN
 	ALTER TABLE [dbo].[AccountNewsletters] ADD  CONSTRAINT [DF_AccountNewsletters_IsSent]  DEFAULT ((0)) FOR [IsSent]
 END
 GO
 
-IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20131116-SX-2')
+IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20131116-SX-3')
 BEGIN
-   INSERT INTO AppliedUpdates(Name) Values ('20131116-SX-2')
+   INSERT INTO AppliedUpdates(Name) Values ('20131116-SX-3')
 END
 GO
 -- *******************
--- END 20131116-SX-2
+-- END 20131116-SX-3
 -- CREATE AccountNewsletters Table
 -- *******************
 
