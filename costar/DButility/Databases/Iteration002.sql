@@ -330,4 +330,42 @@ GO
 -- *******************
 
 
+-- *******************
+-- START 20140102-SX-1
+-- CREATE StoreShippingOptions Table
+-- *******************
+IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20140102-SX-1')
+BEGIN
+	CREATE TABLE [dbo].[StoreShippingOptions](
+		[ShippingOptionID] [bigint] IDENTITY(1,1) NOT NULL,
+		[Name] [nvarchar](100) NOT NULL,
+		[TrackingUrl] [nvarchar](250) NULL,
+		[IsActive] [bit] NOT NULL,
+		[PerOrderFlatRate] [smallmoney] NULL,
+		[PerItemFlatRate] [smallmoney] NULL,
+		[PerKGRate] [smallmoney] NULL,
+		[Instruction] [nvarchar](2000) NULL,
+		[Timestamp] [timestamp] NOT NULL,
+	 CONSTRAINT [PK_StoreShippingOptions] PRIMARY KEY CLUSTERED 
+	(
+		[ShippingOptionID] ASC
+	)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+END
+GO
 
+IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20140102-SX-1')
+BEGIN
+	ALTER TABLE [dbo].[StoreShippingOptions] ADD  CONSTRAINT [DF_StoreShippingOptions_IsActive]  DEFAULT ((0)) FOR [IsActive]
+END
+GO
+
+IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20140102-SX-1')
+BEGIN
+   INSERT INTO AppliedUpdates(Name) Values ('20140102-SX-1')
+END
+GO
+-- *******************
+-- END 20140102-SX-1
+-- CREATE StoreShippingOptions Table
+-- *******************
