@@ -36,7 +36,7 @@ namespace CostarWeb.Admin.Base.Product
                         SalePrice = c.SalePrice,
                         VIPPrice = c.VIPPrice,
                         SellCount = c.ProductID,
-                        WarHouseCount = c.ProductID,
+                        WarHouseCount = linq.StoreProductInventories.Where(i => i.ProductID == c.ProductID).Sum(a => (int?)a.QtyAvail),
                         ProductID = c.ProductID,
                         IsActive = c.IsActive == true ? "/images/ico_success-24.png" : "/images/ico_error-24.png"
                     });
@@ -58,7 +58,7 @@ namespace CostarWeb.Admin.Base.Product
                         SalePrice = c.SalePrice,
                         VIPPrice = c.VIPPrice,
                         SellCount = c.ProductID,
-                        WarHouseCount = c.ProductID,
+                        WarHouseCount = linq.StoreProductInventories.Where(i => i.ProductID == c.ProductID).Sum(a => (int?)a.QtyAvail),
                         ProductID = c.ProductID,
                         IsActive = c.IsActive == true ? "/images/ico_success-24.png" : "/images/ico_error-24.png"
                     });

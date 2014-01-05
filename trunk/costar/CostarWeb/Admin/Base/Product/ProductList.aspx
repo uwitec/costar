@@ -48,6 +48,7 @@
                     loadlist($("#ddl_StoreAnimes").val());
                 }
             });
+
         }
     </script>
 </head>
