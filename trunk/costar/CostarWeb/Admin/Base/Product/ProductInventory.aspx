@@ -35,7 +35,8 @@
     </script>
 </head>
 <body>
-    <form runat="server"><%--action="ProductInventory.aspx" method="post" id="ProductInv" enctype="multipart/form-data">--%>
+    <form runat="server">
+        <%--action="ProductInventory.aspx" method="post" id="ProductInv" enctype="multipart/form-data">--%>
         <div>
             <span style="font-size: x-large">商品库存</span>
         </div>
@@ -43,7 +44,7 @@
             <asp:Literal ID="lbl_ProductName" runat="server" Text="产品名称"></asp:Literal>
         </div>
         <div>
-            <a href="ProductList.aspx">返回至产品编辑列</a>
+            <a href="ProductList.aspx">返回至产品列表</a>
         </div>
         <div>
             产品属性
@@ -51,14 +52,14 @@
         <div>
             <input runat="server" id="ProductNo" type="radio" name="radio_vaiant" />此产品无任何属性
         </div>
-        <div id="VaiantNo" style="display: none;">
+        <div id="VaiantNo" runat="server" style="display: none;">
             数量  
             <input runat="server" id="ProductNum" type="text" style="width: 100px" />
         </div>
         <div>
             <input runat="server" id="ProductYes" type="radio" name="radio_vaiant" />此产品含有属性
         </div>
-        <div id="VaiantYes" style="display: none;">
+        <div id="VaiantYes" runat="server" style="display: none;">
             <div>
                 属性1
                 <select runat="server" id="ddl_Vaiant1" style="width: 100px"></select>
@@ -70,9 +71,6 @@
         </div>
         <div>
             <asp:Button ID="btn_continue" runat="server" Text="继续" OnClick="btn_continue_Click" />
-            <%--<input type="submit" name="btn_continue" value="继续" style="width: 100px" />
-            <input type="hidden" id="continuehidden" name="a" value="continue" />
-            <input type="hidden" name="ProductID" value="<%=Request["ProductID"] %>" />--%>
             <br />
             <br />
         </div>
@@ -86,7 +84,7 @@
                 <option>5</option>
             </select>
             条数据
-            <input type="submit" name="btn_add" value="添加" style="width: 60px" />
+            <asp:Button ID="btn_add" runat="server" Text="添加" OnClick="btn_add_Click" />
             <br />
             <asp:Literal ID="Literal1" runat="server" Text="(产品名称)"></asp:Literal>库存
             <table class="listtable" width="800px" border="0" cellspacing="0" cellpadding="0">
@@ -114,23 +112,28 @@
                                 <asp:DropDownList ID="ddl_SVTO2" runat="server" DataTextField="txt" DataValueField="val"></asp:DropDownList>
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_QtyAvail" runat="server" Text="0"></asp:TextBox>
+                                <asp:TextBox ID="txt_QtyAvail" runat="server" Text='<%#Eval("QtyAvail") %>'></asp:TextBox>
                             </td>
                             <td>
                                 <%# Eval("QtySold") %>
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_SortOrder" runat="server" Text="1"></asp:TextBox>
+                                <asp:TextBox ID="txt_SortOrder" runat="server" Text='<%#Eval("SortOrder") %>'></asp:TextBox>
                             </td>
                             <td width="100" valign="center">
                                 <span class="fontbtn">
-                                    <a style="cursor: pointer" onclick="del(<%# Eval("ProductID") %>)">[删除]</a>
+                                    <a style="cursor: pointer" href="ProductInventory.aspx?InventoryID=<%# Eval("InventoryID") %>&a=del">[删除]</a>
+                                </span>
+                            </td>
+                            <td>
+                                <asp:HiddenField ID="HiddenField_InventoryID" runat="server" Value='<%#Eval("InventoryID") %>'/>
                             </td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>
             </table>
-
+            <asp:Button ID="btn_save" runat="server" Text="保存" OnClick="btn_save_Click" />
+            <span class="fontbtn"><a href="ProductList.aspx">取消当前编辑</a> </span>
         </div>
     </form>
 </body>
