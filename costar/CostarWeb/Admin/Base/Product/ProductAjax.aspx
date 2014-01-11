@@ -51,7 +51,7 @@
              <td width="100" valign="center">
                 <span class="fontbtn">
                   <a style="cursor:pointer" href="ProductEdit.aspx?ProductID=<%# Eval("ProductID") %>&b=edit">[编辑]</a>
-                  <a style="cursor:pointer"  href="ProductInventory.aspx?ProductID=<%# Eval("ProductID") %>">[库存]</a>
+                  <a style="cursor:pointer"  href="ProductInventory.aspx?ProductID=<%# Eval("ProductID") %>&a=edit">[库存]</a>
                   <a style="cursor:pointer" onclick="del(<%# Eval("ProductID") %>)">[删除]</a>
              </td>
          </tr>
