@@ -1,5 +1,6 @@
 ﻿using Common;
 using Moudle;
+using Moudle.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,6 +13,11 @@ namespace CostarWeb.Admin.Base.Product
 {
     public partial class ProductInventory : System.Web.UI.Page
     {
+        private StoreProductInventoyRepository _StoreProductInventoy = new StoreProductInventoyRepository();
+        private StoreVariantTypeOptionsRepository _StoreVariantTypeOptions = new StoreVariantTypeOptionsRepository();
+        private StoreVariantTypesRepository _StoreVariantTypes = new StoreVariantTypesRepository();
+        private StoreProductRepository _StoreProduct = new StoreProductRepository();
+
         protected string _type1 = "属性1";
         protected string _type2 = "属性2";
         private int _productID = 0;
@@ -24,96 +30,56 @@ namespace CostarWeb.Admin.Base.Product
 
             if (!IsPostBack)
             {
-                if (a == "edit")
-                {
-                    _OnPageLoadEdit(_productID);
-                }
-                if (a == "del")
-                {
-                    _OnPageDel(InventoryID);
-                }
+                if (a == "edit") _OnPageLoadEdit(_productID);
+
+                if (a == "del") _OnPageDel(InventoryID);
+
                 _OnPageLoad();
             }
         }
 
         protected void _OnPageDel(int InventoryID)
         {
-            using (LinqDataContext linq = new LinqDataContext())
-            {
-                linq.StoreProductInventories.DeleteAllOnSubmit(linq.StoreProductInventories.Where(c => c.InventoryID == InventoryID));
-                linq.SubmitChanges();
-                Response.Redirect(Request.UrlReferrer.ToString());
-            }
+            _StoreProductInventoy.DelProductInventoy(InventoryID);
+            Response.Redirect(Request.UrlReferrer.ToString());
         }
 
         protected void _OnPageLoad()
         {
-            using (LinqDataContext linq = new LinqDataContext())
-            {
-                //Vaiant1
-                ddl_Vaiant1.DataSource = linq.StoreVariantTypes.Select(c => new { val = c.VariantTypeID, txt = c.GroupName });
-                ddl_Vaiant1.DataTextField = "txt";
-                ddl_Vaiant1.DataValueField = "val";
-                ddl_Vaiant1.DataBind();
+            //Vaiant1
+            ddl_Vaiant1.DataSource = _StoreVariantTypes.GetAllStoreVariantType();
+            ddl_Vaiant1.DataTextField = "GroupName";
+            ddl_Vaiant1.DataValueField = "VariantTypeID";
+            ddl_Vaiant1.DataBind();
 
-                //Vaiant2
-                ddl_Vaiant2.DataSource = linq.StoreVariantTypes.Select(c => new { val = c.VariantTypeID, txt = c.GroupName });
-                ddl_Vaiant2.DataTextField = "txt";
-                ddl_Vaiant2.DataValueField = "val";
-                ddl_Vaiant2.DataBind();
-            }
+            //Vaiant2
+            ddl_Vaiant2.DataSource = _StoreVariantTypes.GetAllStoreVariantType();
+            ddl_Vaiant2.DataTextField = "GroupName";
+            ddl_Vaiant2.DataValueField = "VariantTypeID";
+            ddl_Vaiant2.DataBind();
         }
 
         protected void _OnPageLoadEdit(int productID)
         {
-            using (LinqDataContext linq = new LinqDataContext())
-            {
-                var q = linq.StoreProducts.Where(c => c.ProductID == _productID).SingleOrDefault();
-                int Variant1 = MyCommon.ToInt(q.Variant1TypeID.ToString());
-                int Variant2 = MyCommon.ToInt(q.Variant2TypeID.ToString());
+            int Variant1 = MyCommon.ToInt(_StoreProduct.GetProductByID(productID).Variant1TypeID.ToString());
+            int Variant2 = MyCommon.ToInt(_StoreProduct.GetProductByID(productID).Variant1TypeID.ToString());
 
-                if (Variant1 > 0 && Variant2 > 0)
-                {
-                    BindRepeater(productID);
-                }
-            }
+            //Have Variant
+            if (Variant1 > 0 && Variant2 > 0)
+                BindRepeater(productID);
         }
 
-        protected void ShowVariant(int Variant1, int Variant2)
+        protected void BindRepeater(int productId)
         {
             using (LinqDataContext linq = new LinqDataContext())
             {
-                var q = linq.StoreProducts.Where(c => c.ProductID == _productID).SingleOrDefault();
-
-                if (Variant1 != 0)
-                {
-                    var svt1 = linq.StoreVariantTypes.Where(c => c.VariantTypeID == Variant1).SingleOrDefault();
-                    _type1 = svt1.GroupName;
-                    q.Variant1TypeID = Variant1;
-                    th1.Style.Value = "display: block;";
-                }
-                if (Variant2 != 0)
-                {
-                    var svt2 = linq.StoreVariantTypes.Where(c => c.VariantTypeID == Variant2).SingleOrDefault();
-                    _type2 = svt2.GroupName;
-                    q.Variant2TypeID = Variant2;
-                    th2.Style.Value = "display: block;";
-                }
-
-                div_detail.Style.Value = "display: block;";
-            }
-        }
-
-        protected void BindRepeater(int prodId)
-        {
-            using (LinqDataContext linq = new LinqDataContext())
-            {
-                var q = linq.StoreProductInventories.Where(c => c.ProductID == prodId).Select(c => new
+                var q = linq.StoreProductInventories.Where(c => c.ProductID == productId).OrderBy(c => c.SortOrder).Select(c => new
                 {
                     InventoryID = c.InventoryID,
                     QtySold = c.QtySold,
                     QtyAvail = c.QtyAvail,
-                    SortOrder =c.SortOrder
+                    SortOrder = c.SortOrder,
+                    QtyOnHold = c.QtyOnHold
                 });
 
                 rpt_list.DataSource = q;
@@ -121,44 +87,53 @@ namespace CostarWeb.Admin.Base.Product
             }
         }
 
+        protected void ShowVariant(int Variant1, int Variant2)
+        {
+            if (Variant1 != 0)
+            {
+                _type1 = _StoreVariantTypes.GetStoreVariantTypeByID(Variant1).GroupName;
+                th1.Style.Value = "display: block;";
+            }
+            if (Variant2 != 0)
+            {
+                _type2 = _StoreVariantTypes.GetStoreVariantTypeByID(Variant2).GroupName;
+                th2.Style.Value = "display: block;";
+            }
+
+            div_detail.Style.Value = "display: block;";
+        }
+
         protected void rpt_list_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            using (LinqDataContext linq = new LinqDataContext())
+            int Variant1 = MyCommon.ToInt(_StoreProduct.GetProductByID(_productID).Variant1TypeID.ToString());
+            int Variant2 = MyCommon.ToInt(_StoreProduct.GetProductByID(_productID).Variant2TypeID.ToString());
+            ShowVariant(Variant1, Variant2);
+
+            if (Variant1 != 0)
             {
-                var q = linq.StoreProducts.Where(c => c.ProductID == _productID).SingleOrDefault();
-                int Variant1 = MyCommon.ToInt(q.Variant1TypeID.ToString());
-                int Variant2 = MyCommon.ToInt(q.Variant2TypeID.ToString());
-                ShowVariant(Variant1, Variant2);
+                DropDownList ddl = (DropDownList)e.Item.FindControl("ddl_SVTO1");
+                ddl.DataSource = _StoreVariantTypeOptions.GetStoreVariantTypeOptionByVariantTypeID(Variant1);
+                ddl.DataTextField = "Name";
+                ddl.DataValueField = "VariantOptionID";
+                ddl.DataBind();
 
-                if (Variant1 != 0)
-                {
-                    DropDownList ddl = (DropDownList)e.Item.FindControl("ddl_SVTO1");
-                    ddl.DataSource = linq.StoreVariantTypeOptions.Where(c => c.VariantTypeID == Variant1).Select(c => new { val = c.VariantOptionID, txt = c.Name });
-                    ddl.DataTextField = "txt";
-                    ddl.DataValueField = "val";
-                    ddl.DataBind();
+                HiddenField invId = (HiddenField)e.Item.FindControl("HiddenField_InventoryID");
+                ddl.SelectedValue = _StoreProductInventoy.GetInventoryByInventoryID(MyCommon.ToInt(invId.Value)).Variant1OptionID.ToString();
 
-                    HiddenField invId = (HiddenField)e.Item.FindControl("HiddenField_InventoryID");
-                    StoreProductInventory inv = linq.StoreProductInventories.Where(c => c.InventoryID == MyCommon.ToInt(invId.Value)).SingleOrDefault();
-                    ddl.SelectedValue = inv.Variant1OptionID.ToString();
+                ((System.Web.UI.HtmlControls.HtmlTableCell)(e.Item.FindControl("td1"))).Style.Value = "display: block;";
+            }
+            if (Variant2 != 0)
+            {
+                DropDownList ddl = (DropDownList)e.Item.FindControl("ddl_SVTO2");
+                ddl.DataSource = _StoreVariantTypeOptions.GetStoreVariantTypeOptionByVariantTypeID(Variant2);
+                ddl.DataTextField = "Name";
+                ddl.DataValueField = "VariantOptionID";
+                ddl.DataBind();
 
-                    ((System.Web.UI.HtmlControls.HtmlTableCell)(e.Item.FindControl("td1"))).Style.Value = "display: block;";
-                }
-                if (Variant2 != 0)
-                {
-                    DropDownList ddl = (DropDownList)e.Item.FindControl("ddl_SVTO2");
-                    ddl.DataSource = linq.StoreVariantTypeOptions.Where(c => c.VariantTypeID == Variant2).Select(c => new { val = c.VariantOptionID, txt = c.Name });
-                    ddl.DataTextField = "txt";
-                    ddl.DataValueField = "val";
-                    ddl.DataBind();
-                    ddl.SelectedValue = Variant2.ToString();
+                HiddenField invId = (HiddenField)e.Item.FindControl("HiddenField_InventoryID");
+                ddl.SelectedValue = _StoreProductInventoy.GetInventoryByInventoryID(MyCommon.ToInt(invId.Value)).Variant2OptionID.ToString();
 
-                    HiddenField invId = (HiddenField)e.Item.FindControl("HiddenField_InventoryID");
-                    StoreProductInventory inv = linq.StoreProductInventories.Where(c => c.InventoryID == MyCommon.ToInt(invId.Value)).SingleOrDefault();
-                    ddl.SelectedValue = inv.Variant2OptionID.ToString();
-
-                    ((System.Web.UI.HtmlControls.HtmlTableCell)(e.Item.FindControl("td2"))).Style.Value = "display: block;";
-                }
+                ((System.Web.UI.HtmlControls.HtmlTableCell)(e.Item.FindControl("td2"))).Style.Value = "display: block;";
             }
         }
 
@@ -173,8 +148,7 @@ namespace CostarWeb.Admin.Base.Product
                 inv.QtyOnHold = 0;
                 inv.SortOrder = 0;
                 if (Request["radio_vaiant"] == "ProductNo") inv.QtyAvail = MyCommon.ToInt(Request["ProductNum"]);
-                linq.StoreProductInventories.InsertOnSubmit(inv);
-                linq.SubmitChanges();
+                _StoreProductInventoy.SaveProductInventory(inv);
 
                 if (Request["radio_vaiant"] == "ProductYes")
                 {
@@ -187,12 +161,13 @@ namespace CostarWeb.Admin.Base.Product
                         return;
                     }
 
-                    StoreProduct product = linq.StoreProducts.Where(c => c.ProductID == _productID).SingleOrDefault();
+                    StoreProduct product = new StoreProduct();
+                    product.ProductID = _productID;
                     if (Variant1 == 0) product.Variant1TypeID = null;
                     else product.Variant1TypeID = Variant1;
                     if (Variant2 == 0) product.Variant2TypeID = null;
                     else product.Variant2TypeID = Variant2;
-                    linq.SubmitChanges();
+                    _StoreProduct.SaveProduct(product);
 
                     ShowVariant(Variant1, Variant2);
                     BindRepeater(_productID);
@@ -204,22 +179,18 @@ namespace CostarWeb.Admin.Base.Product
         {
             int addcount = MyCommon.ToInt(Request["ddl_count"]);
 
-            using (LinqDataContext linq = new LinqDataContext())
+            for (int i = 0; i < addcount; i++)
             {
-                for (int i = 0; i < addcount; i++)
-                {
-                    StoreProductInventory inv = new StoreProductInventory();
+                StoreProductInventory inv = new StoreProductInventory();
 
-                    inv.ProductID = _productID;
-                    inv.QtyAvail = 0;
-                    inv.QtySold = 0;
-                    inv.QtyOnHold = 0;
-                    inv.SortOrder = 0;
-                    inv.QtyAvail = 0;
+                inv.ProductID = _productID;
+                inv.QtyAvail = 0;
+                inv.QtySold = 0;
+                inv.QtyOnHold = 0;
+                inv.SortOrder = 0;
+                inv.QtyAvail = 0;
 
-                    linq.StoreProductInventories.InsertOnSubmit(inv);
-                    linq.SubmitChanges();
-                }
+                _StoreProductInventoy.SaveProductInventory(inv);
             }
 
             BindRepeater(_productID);
@@ -251,6 +222,12 @@ namespace CostarWeb.Admin.Base.Product
 
                     TextBox SortOrder = (TextBox)item.FindControl("txt_SortOrder");
                     inv.SortOrder = MyCommon.ToInt(SortOrder.Text);
+
+                    Label QtySold = (Label)item.FindControl("lbl_QtySold");
+                    inv.QtySold = MyCommon.ToInt(QtySold.Text);
+
+                    Label QtyOnHold = (Label)item.FindControl("lbl_QtyOnHold");
+                    inv.QtyOnHold = MyCommon.ToInt(QtyOnHold.Text);
 
                     linq.SubmitChanges();
                 }
