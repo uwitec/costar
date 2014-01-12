@@ -67,7 +67,7 @@
             <div class="user_setting" style="padding-top: 0;">
                 <dl class="usertopbar clearfix">
                     <dt class="btns_box">
-                        <input name="" type="button" value="新加产品" onclick="window.location.href = 'ProductEdit.aspx'" />
+                        <input name="" type="button" value="新加产品" onclick="window.location.href = 'EditProduct.aspx'" />
                         <input name="" type="button" value="查看已删除的产品" /></dt>
                 </dl>
                 <li>产品列表</li>

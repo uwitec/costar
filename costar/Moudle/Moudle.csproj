@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\StoreColorRepository.cs" />
+    <Compile Include="DataAccess\StoreAnimeRepository.cs" />
+    <Compile Include="DataAccess\StoreProductRepository.cs" />
     <Compile Include="Linq.cs">
       <DependentUpon>Linq.dbml</DependentUpon>
     </Compile>
@@ -86,6 +89,7 @@
       <DependentUpon>Linq.dbml</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

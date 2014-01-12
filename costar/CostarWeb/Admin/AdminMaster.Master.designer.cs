@@ -7,10 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CostarWeb.Admin.Base.Product {
+namespace CostarWeb.Admin {
     
     
-    public partial class ProductList {
+    public partial class AdminMaster {
+        
+        /// <summary>
+        /// head control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
         /// form1 control.
@@ -31,21 +40,12 @@ namespace CostarWeb.Admin.Base.Product {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tp;
         
         /// <summary>
-        /// ddl_StoreAnimes control.
+        /// content control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect ddl_StoreAnimes;
-        
-        /// <summary>
-        /// Pager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::CostarWeb.UserControl.Pager Pager1;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder content;
     }
 }

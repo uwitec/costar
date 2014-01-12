@@ -164,6 +164,13 @@ namespace Common
         }
         #endregion
 
+        public static long ToLong(string s)
+        {
+            long _long = 0;
+            long.TryParse(s, out _long);
+            return _long;
+        }
+
         #region 转换Decimal
 
         public static decimal ToDecimal(string s)
