@@ -74,11 +74,11 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Base\Product\EditProduct.aspx" />
     <Content Include="Admin\Base\Product\jquery.autogrow.textarea.js" />
     <Content Include="Admin\Base\Product\ProductInventory.aspx" />
     <Content Include="js\jquery.js" />
     <Content Include="Admin\Base\Product\ProductAjax.aspx" />
-    <Content Include="Admin\Base\Product\ProductEdit.aspx" />
     <Content Include="Admin\Base\Product\ProductList.aspx" />
     <Content Include="Admin\UserControl\Pager.ascx" />
     <Content Include="bin\Newtonsoft.Json.dll" />
@@ -199,6 +199,7 @@
     <Content Include="js\jquery.form.js" />
     <Content Include="js\jquery.placeholder-1.0.js" />
     <Content Include="js\jquery.tools.min.js" />
+    <Content Include="js\loadJQuery.js" />
     <Content Include="js\My97DatePicker\calendar.js" />
     <Content Include="js\My97DatePicker\config.js" />
     <Content Include="js\My97DatePicker\lang\en.js" />
@@ -245,19 +246,26 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\AdminMaster.Master.cs">
+      <DependentUpon>AdminMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminMaster.Master.designer.cs">
+      <DependentUpon>AdminMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Base\Product\EditProduct.aspx.cs">
+      <DependentUpon>EditProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Base\Product\EditProduct.aspx.designer.cs">
+      <DependentUpon>EditProduct.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Base\Product\ProductAjax.aspx.cs">
       <DependentUpon>ProductAjax.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\Base\Product\ProductAjax.aspx.designer.cs">
       <DependentUpon>ProductAjax.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Base\Product\ProductEdit.aspx.cs">
-      <DependentUpon>ProductEdit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Base\Product\ProductEdit.aspx.designer.cs">
-      <DependentUpon>ProductEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Base\Product\ProductInventory.aspx.cs">
       <DependentUpon>ProductInventory.aspx</DependentUpon>
@@ -307,6 +315,7 @@
     <Content Include="js\easyvalidator\index.html.bak" />
     <Content Include="js\easyvalidator\validate_user.php" />
     <Content Include="js\Highcharts-3.0.5\examples\line-ajax\analytics.tsv" />
+    <Content Include="Admin\AdminMaster.Master" />
     <None Include="Properties\PublishProfiles\1.pubxml" />
   </ItemGroup>
   <ItemGroup />
