@@ -97,6 +97,8 @@
                     </th>
                     <th>已售出
                     </th>
+                    <th>在购物车数量
+                    </th>
                     <th>排序
                     </th>
                     <th>删除
@@ -115,7 +117,10 @@
                                 <asp:TextBox ID="txt_QtyAvail" runat="server" Text='<%#Eval("QtyAvail") %>'></asp:TextBox>
                             </td>
                             <td>
-                                <%# Eval("QtySold") %>
+                                <asp:Label ID="lbl_QtySold" runat="server" Text='<%# Eval("QtySold") %>'></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="lbl_QtyOnHold" runat="server" Text='<%# Eval("QtyOnHold") %>'></asp:Label>
                             </td>
                             <td>
                                 <asp:TextBox ID="txt_SortOrder" runat="server" Text='<%#Eval("SortOrder") %>'></asp:TextBox>
