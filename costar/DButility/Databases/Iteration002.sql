@@ -338,13 +338,13 @@ IF NOT EXISTS (SELECT * FROM AppliedUpdates WHERE Name = '20140102-SX-1')
 BEGIN
 	CREATE TABLE [dbo].[StoreShippingOptions](
 		[ShippingOptionID] [bigint] IDENTITY(1,1) NOT NULL,
-		[Name] [nvarchar](100) NOT NULL,
-		[TrackingUrl] [nvarchar](250) NULL,
-		[IsActive] [bit] NOT NULL,
-		[PerOrderFlatRate] [smallmoney] NULL,
-		[PerItemFlatRate] [smallmoney] NULL,
-		[PerKGRate] [smallmoney] NULL,
-		[Instruction] [nvarchar](2000) NULL,
+		[Name] [nvarchar](100) NOT NULL, --配送方式名称
+		[TrackingUrl] [nvarchar](250) NULL, --配送方式跟踪网址
+		[IsActive] [bit] NOT NULL, --是否激活
+		[PerOrderFlatRate] [smallmoney] NULL, --每单多少钱
+		[PerItemFlatRate] [smallmoney] NULL, --每个物品多少钱
+		[PerKGRate] [smallmoney] NULL, --每斤多少钱
+		[Instruction] [nvarchar](2000) NULL, --配送方式说明
 		[Timestamp] [timestamp] NOT NULL,
 	 CONSTRAINT [PK_StoreShippingOptions] PRIMARY KEY CLUSTERED 
 	(
