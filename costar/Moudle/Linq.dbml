@@ -1,9 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="costar" Class="LinqDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Table Name="dbo.AppliedUpdates" Member="AppliedUpdates">
-    <Type Name="AppliedUpdate">
-      <Column Name="UpdateID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+  <Table Name="dbo.AccountNewsletters" Member="AccountNewsletters">
+    <Type Name="AccountNewsletter">
+      <Column Name="AccountID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NewsletterID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Opened" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FirstOpenDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ErrorMessage" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="IsSent" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Account_AccountNewsletter" Member="Account" ThisKey="AccountID" OtherKey="AccountID" Type="Account" IsForeignKey="true" />
+      <Association Name="NewsLetter_AccountNewsletter" Member="NewsLetter" ThisKey="NewsletterID" OtherKey="NewsLetterID" Type="NewsLetter" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.StoreVariantTypes" Member="StoreVariantTypes">
@@ -12,6 +17,47 @@
       <Column Name="GroupName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
       <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+      <Association Name="StoreVariantType_StoreProduct" Member="StoreProducts" ThisKey="VariantTypeID" OtherKey="Variant1TypeID" Type="StoreProduct" />
+      <Association Name="StoreVariantType_StoreProduct1" Member="StoreProducts1" ThisKey="VariantTypeID" OtherKey="Variant2TypeID" Type="StoreProduct" />
+      <Association Name="StoreVariantType_StoreVariantTypeOption" Member="StoreVariantTypeOptions" ThisKey="VariantTypeID" OtherKey="VariantTypeID" Type="StoreVariantTypeOption" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Accounts" Member="Accounts">
+    <Type Name="Account">
+      <Column Name="AccountID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="MobileCountryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="BirthDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsMale" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsDeactivated" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastUpdateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Account_AccountNewsletter" Member="AccountNewsletters" ThisKey="AccountID" OtherKey="AccountID" Type="AccountNewsletter" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AppliedUpdates" Member="AppliedUpdates">
+    <Type Name="AppliedUpdate">
+      <Column Name="UpdateID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NewsLetters" Member="NewsLetters">
+    <Type Name="NewsLetter">
+      <Column Name="NewsLetterID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Subject" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Body" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="IsSent" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SendDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CampaignCode" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Association Name="NewsLetter_AccountNewsletter" Member="AccountNewsletters" ThisKey="NewsLetterID" OtherKey="NewsletterID" Type="AccountNewsletter" />
+      <Association Name="NewsLetter_NewsLetter" Member="NewsLetter2" ThisKey="NewsLetterID" OtherKey="NewsLetterID" Type="NewsLetter" Cardinality="One" />
+      <Association Name="NewsLetter_NewsLetter" Member="NewsLetter1" ThisKey="NewsLetterID" OtherKey="NewsLetterID" Type="NewsLetter" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.StoreAnimes" Member="StoreAnimes">
@@ -19,6 +65,7 @@
       <Column Name="AnimeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="AnimeName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="TimeStamp" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Association Name="StoreAnime_StoreProduct" Member="StoreProducts" ThisKey="AnimeID" OtherKey="AnimeID" Type="StoreProduct" />
     </Type>
   </Table>
   <Table Name="dbo.StoreColors" Member="StoreColors">
@@ -26,6 +73,7 @@
       <Column Name="ColorID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ColorName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Association Name="StoreColor_StoreProductColor" Member="StoreProductColors" ThisKey="ColorID" OtherKey="ColorID" Type="StoreProductColor" />
     </Type>
   </Table>
   <Table Name="dbo.StoreProductColors" Member="StoreProductColors">
@@ -33,6 +81,8 @@
       <Column Name="ProductID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="ColorID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Association Name="StoreColor_StoreProductColor" Member="StoreColor" ThisKey="ColorID" OtherKey="ColorID" Type="StoreColor" IsForeignKey="true" />
+      <Association Name="StoreProduct_StoreProductColor" Member="StoreProduct" ThisKey="ProductID" OtherKey="ProductID" Type="StoreProduct" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.StoreProductInventories" Member="StoreProductInventories">
@@ -43,9 +93,13 @@
       <Column Name="QtySold" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="QtyOnHold" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="SortOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="VariantTypeID1" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="Variant1OptionID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VariantTypeID2" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="Variant2OptionID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+      <Association Name="StoreVariantTypeOption_StoreProductInventory" Member="StoreVariantTypeOption" ThisKey="Variant1OptionID" OtherKey="VariantOptionID" Type="StoreVariantTypeOption" IsForeignKey="true" />
+      <Association Name="StoreVariantTypeOption_StoreProductInventory1" Member="StoreVariantTypeOption1" ThisKey="Variant2OptionID" OtherKey="VariantOptionID" Type="StoreVariantTypeOption" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.StoreProducts" Member="StoreProducts">
@@ -71,52 +125,10 @@
       <Column Name="Variant1TypeID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="Variant2TypeID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.StoreVariantTypeOptions" Member="StoreVariantTypeOptions">
-    <Type Name="StoreVariantTypeOption">
-      <Column Name="VariantOptionID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="VariantTypeID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="SortOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.AccountNewsletters" Member="AccountNewsletters">
-    <Type Name="AccountNewsletter">
-      <Column Name="AccountID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="NewsletterID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Opened" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="FirstOpenDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ErrorMessage" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="IsSent" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.NewsLetters" Member="NewsLetters">
-    <Type Name="NewsLetter">
-      <Column Name="NewsLetterID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Subject" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="Body" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="IsSent" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="SendDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CampaignCode" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Accounts" Member="Accounts">
-    <Type Name="Account">
-      <Column Name="AccountID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="MobileCountryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Mobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Password" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="BirthDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
-      <Column Name="IsMale" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="IsDeactivated" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="LastUpdateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="StoreProduct_StoreProductColor" Member="StoreProductColors" ThisKey="ProductID" OtherKey="ProductID" Type="StoreProductColor" />
+      <Association Name="StoreAnime_StoreProduct" Member="StoreAnime" ThisKey="AnimeID" OtherKey="AnimeID" Type="StoreAnime" IsForeignKey="true" />
+      <Association Name="StoreVariantType_StoreProduct" Member="StoreVariantType" ThisKey="Variant1TypeID" OtherKey="VariantTypeID" Type="StoreVariantType" IsForeignKey="true" />
+      <Association Name="StoreVariantType_StoreProduct1" Member="StoreVariantType1" ThisKey="Variant2TypeID" OtherKey="VariantTypeID" Type="StoreVariantType" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.StoreShippingOptions" Member="StoreShippingOptions">
@@ -130,6 +142,18 @@
       <Column Name="PerKGRate" Type="System.Decimal" DbType="SmallMoney" CanBeNull="true" />
       <Column Name="Instruction" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
       <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StoreVariantTypeOptions" Member="StoreVariantTypeOptions">
+    <Type Name="StoreVariantTypeOption">
+      <Column Name="VariantOptionID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VariantTypeID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="SortOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+      <Association Name="StoreVariantTypeOption_StoreProductInventory" Member="StoreProductInventories" ThisKey="VariantOptionID" OtherKey="Variant1OptionID" Type="StoreProductInventory" />
+      <Association Name="StoreVariantTypeOption_StoreProductInventory1" Member="StoreProductInventories1" ThisKey="VariantOptionID" OtherKey="Variant2OptionID" Type="StoreProductInventory" />
+      <Association Name="StoreVariantType_StoreVariantTypeOption" Member="StoreVariantType" ThisKey="VariantTypeID" OtherKey="VariantTypeID" Type="StoreVariantType" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

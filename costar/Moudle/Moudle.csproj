@@ -51,9 +51,6 @@
     <Compile Include="DataAccess\StoreProductRepository.cs" />
     <Compile Include="DataAccess\StoreVariantTypeOptionsRepository.cs" />
     <Compile Include="DataAccess\StoreVariantTypesRepository.cs" />
-    <Compile Include="Linq.cs">
-      <DependentUpon>Linq.dbml</DependentUpon>
-    </Compile>
     <Compile Include="Linq.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -92,7 +89,6 @@
       <DependentUpon>Linq.dbml</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
