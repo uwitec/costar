@@ -58,7 +58,7 @@
             <div class="tabs" id="tp" runat="server">
                 <a class="actived">产品管理</a>
                 <a>订单管理</a>
-                <a>配送方式管理</a>
+                <a href="../Shipping/StoreShippingManage.aspx">配送方式管理</a>
                 <a>问题管理</a>
                 <a>活动管理</a>
                 <a>报表</a>
