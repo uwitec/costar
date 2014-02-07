@@ -77,6 +77,7 @@
     <Content Include="Admin\Base\Product\EditProduct.aspx" />
     <Content Include="Admin\Base\Product\jquery.autogrow.textarea.js" />
     <Content Include="Admin\Base\Product\ProductInventory.aspx" />
+    <Content Include="Admin\Base\Shipping\StoreShippingManage.aspx" />
     <Content Include="js\jquery.js" />
     <Content Include="Admin\Base\Product\ProductAjax.aspx" />
     <Content Include="Admin\Base\Product\ProductList.aspx" />
@@ -280,6 +281,13 @@
     </Compile>
     <Compile Include="Admin\Base\Product\ProductList.aspx.designer.cs">
       <DependentUpon>ProductList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Base\Shipping\StoreShippingManage.aspx.cs">
+      <DependentUpon>StoreShippingManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Base\Shipping\StoreShippingManage.aspx.designer.cs">
+      <DependentUpon>StoreShippingManage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\UserControl\Pager.ascx.cs">
       <DependentUpon>Pager.ascx</DependentUpon>

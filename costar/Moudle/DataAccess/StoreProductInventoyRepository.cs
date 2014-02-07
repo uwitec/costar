@@ -21,6 +21,19 @@ namespace Moudle.DataAccess
         }
 
         /// <summary>
+        /// Delete StoreProductInventory
+        /// </summary>
+        /// <param name="product"></param>
+        public void DelProductInventoryByProduct(long productID)
+        {
+            using (LinqDataContext linq = new LinqDataContext())
+            {
+                linq.StoreProductInventories.DeleteAllOnSubmit(linq.StoreProductInventories.Where(c => c.ProductID == productID));
+                linq.SubmitChanges();
+            }
+        }
+
+        /// <summary>
         /// Get StoreProductInventory By ProductID
         /// </summary>
         /// <param name="productID"></param>
@@ -30,7 +43,7 @@ namespace Moudle.DataAccess
             StoreProductInventory result = null;
             using (LinqDataContext linq = new LinqDataContext())
             {
-                result = linq.StoreProductInventories.Where(p => p.ProductID == productID).OrderBy(c=> c.SortOrder).SingleOrDefault();
+                result = linq.StoreProductInventories.Where(p => p.ProductID == productID).OrderBy(c => c.SortOrder).SingleOrDefault();
             }
             return result;
         }
@@ -70,5 +83,21 @@ namespace Moudle.DataAccess
             }
         }
 
+        /// <summary>
+        /// SUM QtyAvail
+        /// </summary>
+        /// <param name="productID"></param>
+        /// <returns></returns>
+        public decimal QtyAvailByProduct(long productID)
+        {
+            decimal QtyAvail = 0;
+            using (LinqDataContext linq = new LinqDataContext())
+            {
+                int? b = linq.StoreProductInventories.Where(i => i.ProductID == productID).Sum(a => (int?)a.QtyAvail);
+                decimal.TryParse(b.ToString(), out QtyAvail);
+            }
+
+            return QtyAvail;
+        }
     }
 }

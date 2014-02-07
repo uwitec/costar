@@ -15,7 +15,7 @@
 
             //点击无属性显示数量，隐藏属性
             $("#ProductNo").click(function () {
-                $("#ProductNum").val("0");
+                //$("#ProductNum").val("0");
                 $("#ddl_Vaiant1").val("0");
                 $("#ddl_Vaiant2").val("0");
 
@@ -24,7 +24,7 @@
             });
             //点击有属性显示属性，隐藏数量
             $("#ProductYes").click(function () {
-                $("#ProductNum").val("0");
+                //$("#ProductNum").val("0");
                 $("#ddl_Vaiant1").val("0");
                 $("#ddl_Vaiant2").val("0");
 
@@ -50,6 +50,7 @@
             产品属性
         </div>
         <div>
+            <%--<asp:RadioButton ID="ProductNo" runat="server" Text="此产品无任何属性" GroupName="radio_vaiant" />--%>
             <input runat="server" id="ProductNo" type="radio" name="radio_vaiant" />此产品无任何属性
         </div>
         <div id="VaiantNo" runat="server" style="display: none;">
@@ -57,6 +58,7 @@
             <input runat="server" id="ProductNum" type="text" style="width: 100px" />
         </div>
         <div>
+            <%--<asp:RadioButton ID="ProductYes" runat="server" Text="此产品含有属性" GroupName="radio_vaiant" />--%>
             <input runat="server" id="ProductYes" type="radio" name="radio_vaiant" />此产品含有属性
         </div>
         <div id="VaiantYes" runat="server" style="display: none;">
@@ -70,7 +72,7 @@
             </div>
         </div>
         <div>
-            <asp:Button ID="btn_continue" runat="server" Text="继续" OnClick="btn_continue_Click" />
+            <asp:Button ID="btn_continue" runat="server" Text="继续" OnClick="btn_continue_Click" OnClientClick="return confirm('确定要继续吗？');" />
             <br />
             <br />
         </div>
@@ -131,7 +133,7 @@
                                 </span>
                             </td>
                             <td>
-                                <asp:HiddenField ID="HiddenField_InventoryID" runat="server" Value='<%#Eval("InventoryID") %>'/>
+                                <asp:HiddenField ID="HiddenField_InventoryID" runat="server" Value='<%#Eval("InventoryID") %>' />
                             </td>
                         </tr>
                     </ItemTemplate>

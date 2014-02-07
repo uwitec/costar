@@ -66,7 +66,17 @@ namespace CostarWeb.Admin.Base.Product
 
             //Have Variant
             if (Variant1 > 0 && Variant2 > 0)
+            {
                 BindRepeater(productID);
+                this.ProductYes.Checked = true;
+                this.VaiantYes.Style.Value = "display: block;";
+            }
+            else
+            {
+                ProductNum.Value = _StoreProductInventoy.QtyAvailByProduct(productID).ToString();
+                this.ProductNo.Checked = true;
+                this.VaiantNo.Style.Value = "display: block;";
+            }
         }
 
         protected void BindRepeater(int productId)
@@ -139,6 +149,14 @@ namespace CostarWeb.Admin.Base.Product
 
         protected void btn_continue_Click(object sender, EventArgs e)
         {
+            if (Request["radio_vaiant"] != "ProductNo" && Request["radio_vaiant"] != "ProductYes")
+            {
+                MyCommon.Alert("请选择产品属性.");
+                return;
+            }
+
+            _StoreProductInventoy.DelProductInventoryByProduct(_productID);
+
             using (LinqDataContext linq = new LinqDataContext())
             {
                 StoreProductInventory inv = new StoreProductInventory();
@@ -147,8 +165,21 @@ namespace CostarWeb.Admin.Base.Product
                 inv.QtySold = 0;
                 inv.QtyOnHold = 0;
                 inv.SortOrder = 0;
-                if (Request["radio_vaiant"] == "ProductNo") inv.QtyAvail = MyCommon.ToInt(Request["ProductNum"]);
-                _StoreProductInventoy.SaveProductInventory(inv);
+
+                if (Request["radio_vaiant"] == "ProductNo")
+                {
+                    inv.QtyAvail = MyCommon.ToInt(Request["ProductNum"]);
+                    _StoreProductInventoy.SaveProductInventory(inv);
+
+                    StoreProduct product = linq.StoreProducts.Where(c => c.ProductID == _productID).SingleOrDefault();
+                    product.Variant1TypeID = null;
+                    product.Variant2TypeID = null;
+                    linq.SubmitChanges();
+
+                    MyCommon.Alert("保存库存数量成功.");
+
+                    Response.Redirect("ProductList.aspx");
+                }
 
                 if (Request["radio_vaiant"] == "ProductYes")
                 {
@@ -161,13 +192,14 @@ namespace CostarWeb.Admin.Base.Product
                         return;
                     }
 
-                    StoreProduct product = new StoreProduct();
-                    product.ProductID = _productID;
+                    StoreProduct product = linq.StoreProducts.Where(c => c.ProductID == _productID).SingleOrDefault();
                     if (Variant1 == 0) product.Variant1TypeID = null;
                     else product.Variant1TypeID = Variant1;
                     if (Variant2 == 0) product.Variant2TypeID = null;
                     else product.Variant2TypeID = Variant2;
-                    _StoreProduct.SaveProduct(product);
+                    linq.SubmitChanges();
+
+                    _StoreProductInventoy.SaveProductInventory(inv);
 
                     ShowVariant(Variant1, Variant2);
                     BindRepeater(_productID);
