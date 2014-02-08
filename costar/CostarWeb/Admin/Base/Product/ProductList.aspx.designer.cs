@@ -13,24 +13,6 @@ namespace CostarWeb.Admin.Base.Product {
     public partial class ProductList {
         
         /// <summary>
-        /// form1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
-        /// tp 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tp;
-        
-        /// <summary>
         /// ddl_StoreAnimes 控件。
         /// </summary>
         /// <remarks>
@@ -47,5 +29,17 @@ namespace CostarWeb.Admin.Base.Product {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::CostarWeb.UserControl.Pager Pager1;
+        
+        /// <summary>
+        /// Master 属性。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的属性。
+        /// </remarks>
+        public new CostarWeb.Admin.AdminMaster Master {
+            get {
+                return ((CostarWeb.Admin.AdminMaster)(base.Master));
+            }
+        }
     }
 }

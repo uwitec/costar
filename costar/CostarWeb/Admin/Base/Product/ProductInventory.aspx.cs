@@ -30,11 +30,11 @@ namespace CostarWeb.Admin.Base.Product
 
             if (!IsPostBack)
             {
+                _OnPageLoad();
+
                 if (a == "edit") _OnPageLoadEdit(_productID);
 
                 if (a == "del") _OnPageDel(InventoryID);
-
-                _OnPageLoad();
             }
         }
 
@@ -62,7 +62,7 @@ namespace CostarWeb.Admin.Base.Product
         protected void _OnPageLoadEdit(int productID)
         {
             int Variant1 = MyCommon.ToInt(_StoreProduct.GetProductByID(productID).Variant1TypeID.ToString());
-            int Variant2 = MyCommon.ToInt(_StoreProduct.GetProductByID(productID).Variant1TypeID.ToString());
+            int Variant2 = MyCommon.ToInt(_StoreProduct.GetProductByID(productID).Variant2TypeID.ToString());
 
             //Have Variant
             if (Variant1 > 0 && Variant2 > 0)
@@ -70,6 +70,8 @@ namespace CostarWeb.Admin.Base.Product
                 BindRepeater(productID);
                 this.ProductYes.Checked = true;
                 this.VaiantYes.Style.Value = "display: block;";
+                this.ddl_Vaiant1.Value = Variant1.ToString();
+                this.ddl_Vaiant2.Value = Variant2.ToString();
             }
             else
             {

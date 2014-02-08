@@ -164,5 +164,17 @@ namespace CostarWeb.Admin.Base.Product {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_save;
+        
+        /// <summary>
+        /// Master 属性。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的属性。
+        /// </remarks>
+        public new CostarWeb.Admin.AdminMaster Master {
+            get {
+                return ((CostarWeb.Admin.AdminMaster)(base.Master));
+            }
+        }
     }
 }

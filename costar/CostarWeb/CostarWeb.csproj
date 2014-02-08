@@ -77,11 +77,13 @@
     <Content Include="Admin\Base\Product\EditProduct.aspx" />
     <Content Include="Admin\Base\Product\jquery.autogrow.textarea.js" />
     <Content Include="Admin\Base\Product\ProductInventory.aspx" />
+    <Content Include="Admin\Base\Shippings\jquery.autogrow.textarea.js" />
     <Content Include="Admin\Base\Shippings\StoreShippingManage.aspx" />
+    <Content Include="UserControl\admin\Head.ascx" />
     <Content Include="js\jquery.js" />
     <Content Include="Admin\Base\Product\ProductAjax.aspx" />
     <Content Include="Admin\Base\Product\ProductList.aspx" />
-    <Content Include="Admin\UserControl\Pager.ascx" />
+    <Content Include="UserControl\Pager.ascx" />
     <Content Include="bin\Newtonsoft.Json.dll" />
     <Content Include="bin\Remotion.Data.Linq.dll" />
     <Content Include="css\common.css" />
@@ -289,11 +291,18 @@
     <Compile Include="Admin\Base\Shippings\StoreShippingManage.aspx.designer.cs">
       <DependentUpon>StoreShippingManage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\UserControl\Pager.ascx.cs">
+    <Compile Include="UserControl\admin\Head.ascx.cs">
+      <DependentUpon>Head.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\admin\Head.ascx.designer.cs">
+      <DependentUpon>Head.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\Pager.ascx.cs">
       <DependentUpon>Pager.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\UserControl\Pager.ascx.designer.cs">
+    <Compile Include="UserControl\Pager.ascx.designer.cs">
       <DependentUpon>Pager.ascx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">

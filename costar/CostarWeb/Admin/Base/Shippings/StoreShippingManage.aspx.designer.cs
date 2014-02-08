@@ -13,15 +13,6 @@ namespace CostarWeb.Admin.Base.Shipping {
     public partial class StoreShippingManage {
         
         /// <summary>
-        /// form1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
         /// btn_add 控件。
         /// </summary>
         /// <remarks>
@@ -29,6 +20,15 @@ namespace CostarWeb.Admin.Base.Shipping {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_add;
+        
+        /// <summary>
+        /// div_show 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_show;
         
         /// <summary>
         /// txt_Name 控件。
@@ -49,22 +49,22 @@ namespace CostarWeb.Admin.Base.Shipping {
         protected global::System.Web.UI.WebControls.TextBox txt_Description;
         
         /// <summary>
-        /// txt_ 控件。
+        /// txt_Price 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_;
+        protected global::System.Web.UI.WebControls.TextBox txt_Price;
         
         /// <summary>
-        /// DropDownList1 控件。
+        /// ddl_Per 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_Per;
         
         /// <summary>
         /// CheckBox_Active 控件。
@@ -74,6 +74,24 @@ namespace CostarWeb.Admin.Base.Shipping {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox CheckBox_Active;
+        
+        /// <summary>
+        /// btn_save 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_save;
+        
+        /// <summary>
+        /// btn_cancle 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_cancle;
         
         /// <summary>
         /// div_detail 控件。
@@ -92,5 +110,26 @@ namespace CostarWeb.Admin.Base.Shipping {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rpt_list;
+        
+        /// <summary>
+        /// HiddenField1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
+        
+        /// <summary>
+        /// Master 属性。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的属性。
+        /// </remarks>
+        public new CostarWeb.Admin.AdminMaster Master {
+            get {
+                return ((CostarWeb.Admin.AdminMaster)(base.Master));
+            }
+        }
     }
 }

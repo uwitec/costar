@@ -8,19 +8,20 @@
     <script type="text/javascript" src="//www.google.com/jsapi"></script>
     <script src="../../../js/loadJQuery.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/css/Pager.css" />
     <asp:ContentPlaceHolder ID="head" runat="server" />
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="tabs" id="tp" runat="server">
-        <a class="actived">产品管理</a>
-        <a>订单管理</a>
-        <a>配送方式管理</a>
-        <a>问题管理</a>
-        <a>活动管理</a>
-        <a>报表</a>
-    </div>
-    <asp:ContentPlaceHolder ID="content" runat="server" />
+        <div class="tabs" id="tp" runat="server">
+            <a class="actived">产品管理</a>
+            <a>订单管理</a>
+            <a href="../../Base/Shippings/StoreShippingManage.aspx">配送方式管理</a>
+            <a>问题管理</a>
+            <a>活动管理</a>
+            <a>报表</a>
+        </div>
+        <asp:ContentPlaceHolder ID="content" runat="server" />
     </form>
 </body>
 </html>
