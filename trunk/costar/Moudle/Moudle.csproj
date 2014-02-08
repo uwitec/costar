@@ -49,6 +49,7 @@
     <Compile Include="DataAccess\StoreAnimeRepository.cs" />
     <Compile Include="DataAccess\StoreProductInventoyRepository.cs" />
     <Compile Include="DataAccess\StoreProductRepository.cs" />
+    <Compile Include="DataAccess\StoreShippingOptionRepository.cs" />
     <Compile Include="DataAccess\StoreVariantTypeOptionsRepository.cs" />
     <Compile Include="DataAccess\StoreVariantTypesRepository.cs" />
     <Compile Include="Linq.designer.cs">
