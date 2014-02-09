@@ -10,48 +10,86 @@
         });
 
     </script>
+    <style type="text/css">
+        .auto-style1
+        {
+            width: 100px;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
-    <div>
-        <span style="font-size: x-large">配送方式管理</span>
-    </div>
-    <div>
-        <a href="../Product/ProductList.aspx">返回至产品列表</a>
-    </div>
-    <div>
-        <asp:Button ID="btn_add" runat="server" Text="添加配送方式" OnClick="btn_add_Click" />
-    </div>
-    <div id="div_show" runat="server" style="display: none;">
-        <div>
-            配送公司<asp:TextBox ID="txt_Name" runat="server" />
-        </div>
-        <div>
-            配送方式描述           
-            <asp:TextBox ID="txt_Description" runat="server" TextMode="MultiLine" Style="overflow: hidden; width: 300px; height: 100px" />
-        </div>
-        <div>
-            配送价格           
-           <asp:TextBox ID="txt_Price" runat="server" MaxLength="10" />
-            <asp:DropDownList ID="ddl_Per" runat="server">
-                <asp:ListItem Value="0">每件</asp:ListItem>
-                <asp:ListItem Value="1">每单</asp:ListItem>
-                <asp:ListItem Value="2">每斤</asp:ListItem>
-            </asp:DropDownList>
-        </div>
-        <div>
-            激活           
-            <asp:CheckBox ID="CheckBox_Active" runat="server" Text="激活配送方式" />
-        </div>
-        <div>
-            <asp:Button ID="btn_save" runat="server" Text="保存" OnClick="btn_save_Click" />
-            <asp:Button ID="btn_cancle" runat="server" Text="取消" OnClick="btn_cancle_Click" />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-        </div>
+    <table class="linetable" width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <th style="font-size: x-large; width: 200px">配送方式管理
+            </th>
+            <td></td>
+        </tr>
+        <tr>
+            <th style="font-size: initial; width: 200px"><a href="../Product/ProductList.aspx">返回至产品列表</a>
+            </th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>
+                <asp:Button ID="btn_add" runat="server" Text="添加配送方式" OnClick="btn_add_Click" />
+            </th>
+            <td></td>
+        </tr>
+    </table>
+    <div id="div_show" runat="server" style="display: block;">
+        <table class="linetable" width="500px" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <th>配送公司
+                </th>
+                <td colspan="2">
+                    <asp:TextBox ID="txt_Name" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <th>配送方式描述
+                </th>
+                <td colspan="2">
+                    <asp:TextBox ID="txt_Description" runat="server" TextMode="MultiLine" Style="overflow: hidden; width: 300px; height: 100px" />
+                </td>
+            </tr>
+            <tr>
+                <th>配送价格
+                </th>
+                <td class="auto-style1">
+                    <asp:TextBox ID="txt_Price" runat="server" MaxLength="10" />
+                </td>
+                <td>
+                    <asp:DropDownList ID="ddl_Per" runat="server">
+                        <asp:ListItem Value="0">每件</asp:ListItem>
+                        <asp:ListItem Value="1">每单</asp:ListItem>
+                        <asp:ListItem Value="2">每斤</asp:ListItem>
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <th>激活
+                </th>
+                <td class="auto-style1">
+                    <asp:CheckBox ID="CheckBox_Active" runat="server" Text="激活配送方式" />
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <th></th>
+                <td class="auto-style1">
+                    <asp:Button ID="btn_save" runat="server" Text="保存" OnClick="btn_save_Click" />
+                </td>
+                <td>
+                    <asp:Button ID="btn_cancle" runat="server" Text="取消" OnClick="btn_cancle_Click" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="auto-style1"></td>
+                <td></td>
+            </tr>
+        </table>
     </div>
     <div runat="server" id="div_detail">
         <table class="listtable" width="800px" border="0" cellspacing="0" cellpadding="0">

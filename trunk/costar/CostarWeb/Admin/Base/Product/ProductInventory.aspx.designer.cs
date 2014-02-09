@@ -13,6 +13,15 @@ namespace CostarWeb.Admin.Base.Product {
     public partial class ProductInventory {
         
         /// <summary>
+        /// Head1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+        
+        /// <summary>
         /// lbl_ProductName 控件。
         /// </summary>
         /// <remarks>
@@ -166,15 +175,12 @@ namespace CostarWeb.Admin.Base.Product {
         protected global::System.Web.UI.WebControls.Button btn_save;
         
         /// <summary>
-        /// Master 属性。
+        /// HiddenField_proId 控件。
         /// </summary>
         /// <remarks>
-        /// 自动生成的属性。
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        public new CostarWeb.Admin.AdminMaster Master {
-            get {
-                return ((CostarWeb.Admin.AdminMaster)(base.Master));
-            }
-        }
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_proId;
     }
 }
