@@ -21,6 +21,7 @@
 
                 $("#VaiantNo").css("display", "block");
                 $("#VaiantYes").css("display", "none");
+                $("#div_detail").css("display", "none");
             });
             //点击有属性显示属性，隐藏数量
             $("#ProductYes").click(function () {
@@ -30,6 +31,7 @@
 
                 $("#VaiantNo").css("display", "none");
                 $("#VaiantYes").css("display", "block");
+                $("#div_detail").css("display", "block");
             });
         });
     </script>
@@ -43,8 +45,7 @@
                 <td></td>
             </tr>
             <tr>
-                <th style="font-size: initial; width: 200px">
-                    [<asp:Literal ID="lbl_ProductName" runat="server" Text="产品名称"></asp:Literal>]
+                <th style="font-size: large; width: 200px">[<asp:Literal ID="lbl_ProductName" runat="server" Text="产品名称"></asp:Literal>]
                 </th>
                 <td></td>
             </tr>
