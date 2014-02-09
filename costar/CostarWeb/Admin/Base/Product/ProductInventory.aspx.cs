@@ -157,6 +157,24 @@ namespace CostarWeb.Admin.Base.Product
                 MyCommon.Alert("请选择产品属性.");
                 return;
             }
+            if (Request["radio_vaiant"] == "ProductYes")
+            {
+                int Variant1 = MyCommon.ToInt(Request["ddl_Vaiant1"]);
+                int Variant2 = MyCommon.ToInt(Request["ddl_Vaiant2"]);
+
+                if (_StoreVariantTypeOptions.GetStoreVariantTypeOptionByVariantTypeID(Variant1).Count == 0)
+                {
+                    string name = _StoreVariantTypes.GetStoreVariantTypeByID(Variant1).GroupName;
+                    MyCommon.Alert("属性1中[" + name + "]无数据,请添加.");
+                    return;
+                }
+                if (_StoreVariantTypeOptions.GetStoreVariantTypeOptionByVariantTypeID(Variant2).Count == 0)
+                {
+                    string name = _StoreVariantTypes.GetStoreVariantTypeByID(Variant2).GroupName;
+                    MyCommon.Alert("属性2中[" + name + "]无数据,请添加.");
+                    return;
+                }
+            }
 
             _StoreProductInventoy.DelProductInventoryByProduct(MyCommon.ToLong(this.HiddenField_proId.Value));
 
