@@ -20,19 +20,19 @@ namespace CostarWeb.Admin.Base.Product
 
         protected string _type1 = "属性1";
         protected string _type2 = "属性2";
-        private int _productID = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            _productID = MyCommon.ToInt(Request["ProductID"]);
-            int InventoryID = MyCommon.ToInt(Request["InventoryID"]);
-            string a = Request["a"];
-
             if (!IsPostBack)
             {
-                _OnPageLoad();
+                int productID = MyCommon.ToInt(Request["ProductID"]);
+                int InventoryID = MyCommon.ToInt(Request["InventoryID"]);
+                string a = Request["a"];
+                this.HiddenField_proId.Value = productID.ToString();
 
-                if (a == "edit") _OnPageLoadEdit(_productID);
+                _OnPageLoad(productID);
+
+                if (a == "edit") _OnPageLoadEdit(productID);
 
                 if (a == "del") _OnPageDel(InventoryID);
             }
@@ -44,8 +44,9 @@ namespace CostarWeb.Admin.Base.Product
             Response.Redirect(Request.UrlReferrer.ToString());
         }
 
-        protected void _OnPageLoad()
+        protected void _OnPageLoad(int productID)
         {
+            this.lbl_ProductName.Text = _StoreProduct.GetProductByID(productID).Name;
             //Vaiant1
             ddl_Vaiant1.DataSource = _StoreVariantTypes.GetAllStoreVariantType();
             ddl_Vaiant1.DataTextField = "GroupName";
@@ -117,8 +118,8 @@ namespace CostarWeb.Admin.Base.Product
 
         protected void rpt_list_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            int Variant1 = MyCommon.ToInt(_StoreProduct.GetProductByID(_productID).Variant1TypeID.ToString());
-            int Variant2 = MyCommon.ToInt(_StoreProduct.GetProductByID(_productID).Variant2TypeID.ToString());
+            int Variant1 = MyCommon.ToInt(_StoreProduct.GetProductByID(MyCommon.ToLong(this.HiddenField_proId.Value)).Variant1TypeID.ToString());
+            int Variant2 = MyCommon.ToInt(_StoreProduct.GetProductByID(MyCommon.ToLong(this.HiddenField_proId.Value)).Variant2TypeID.ToString());
             ShowVariant(Variant1, Variant2);
 
             if (Variant1 != 0)
@@ -157,12 +158,12 @@ namespace CostarWeb.Admin.Base.Product
                 return;
             }
 
-            _StoreProductInventoy.DelProductInventoryByProduct(_productID);
+            _StoreProductInventoy.DelProductInventoryByProduct(MyCommon.ToLong(this.HiddenField_proId.Value));
 
             using (LinqDataContext linq = new LinqDataContext())
             {
                 StoreProductInventory inv = new StoreProductInventory();
-                inv.ProductID = _productID;
+                inv.ProductID = long.Parse(this.HiddenField_proId.Value);
                 inv.QtyAvail = 0;
                 inv.QtySold = 0;
                 inv.QtyOnHold = 0;
@@ -173,7 +174,7 @@ namespace CostarWeb.Admin.Base.Product
                     inv.QtyAvail = MyCommon.ToInt(Request["ProductNum"]);
                     _StoreProductInventoy.SaveProductInventory(inv);
 
-                    StoreProduct product = linq.StoreProducts.Where(c => c.ProductID == _productID).SingleOrDefault();
+                    StoreProduct product = linq.StoreProducts.Where(c => c.ProductID == MyCommon.ToLong(this.HiddenField_proId.Value)).SingleOrDefault();
                     product.Variant1TypeID = null;
                     product.Variant2TypeID = null;
                     linq.SubmitChanges();
@@ -194,7 +195,7 @@ namespace CostarWeb.Admin.Base.Product
                         return;
                     }
 
-                    StoreProduct product = linq.StoreProducts.Where(c => c.ProductID == _productID).SingleOrDefault();
+                    StoreProduct product = linq.StoreProducts.Where(c => c.ProductID == MyCommon.ToLong(this.HiddenField_proId.Value)).SingleOrDefault();
                     if (Variant1 == 0) product.Variant1TypeID = null;
                     else product.Variant1TypeID = Variant1;
                     if (Variant2 == 0) product.Variant2TypeID = null;
@@ -204,7 +205,7 @@ namespace CostarWeb.Admin.Base.Product
                     _StoreProductInventoy.SaveProductInventory(inv);
 
                     ShowVariant(Variant1, Variant2);
-                    BindRepeater(_productID);
+                    BindRepeater(MyCommon.ToInt(this.HiddenField_proId.Value));
                 }
             }
         }
@@ -217,7 +218,7 @@ namespace CostarWeb.Admin.Base.Product
             {
                 StoreProductInventory inv = new StoreProductInventory();
 
-                inv.ProductID = _productID;
+                inv.ProductID = long.Parse(this.HiddenField_proId.Value);
                 inv.QtyAvail = 0;
                 inv.QtySold = 0;
                 inv.QtyOnHold = 0;
@@ -227,7 +228,7 @@ namespace CostarWeb.Admin.Base.Product
                 _StoreProductInventoy.SaveProductInventory(inv);
             }
 
-            BindRepeater(_productID);
+            BindRepeater(MyCommon.ToInt(this.HiddenField_proId.Value));
         }
 
         protected void btn_save_Click(object sender, EventArgs e)

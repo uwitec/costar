@@ -14,7 +14,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="tabs" id="tp" runat="server">
-            <a class="actived">产品管理</a>
+            <a href="../../Base/Product/ProductList.aspx">产品管理</a>
             <a>订单管理</a>
             <a href="../../Base/Shippings/StoreShippingManage.aspx">配送方式管理</a>
             <a>问题管理</a>
