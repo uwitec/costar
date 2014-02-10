@@ -93,9 +93,7 @@
       <Column Name="QtySold" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="QtyOnHold" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="SortOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="VariantTypeID1" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="Variant1OptionID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="VariantTypeID2" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="Variant2OptionID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
       <Association Name="StoreVariantTypeOption_StoreProductInventory" Member="StoreVariantTypeOption" ThisKey="Variant1OptionID" OtherKey="VariantOptionID" Type="StoreVariantTypeOption" IsForeignKey="true" />

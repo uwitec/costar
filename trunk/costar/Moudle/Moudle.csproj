@@ -66,6 +66,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Linq.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Linq.designer.cs</LastGenOutput>
