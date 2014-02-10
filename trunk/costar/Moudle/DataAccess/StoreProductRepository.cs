@@ -23,7 +23,7 @@ namespace Moudle.DataAccess
             {
                 if (product.ProductID > 0)
                     dc.StoreProducts.Attach(product, true);
-                else
+                if (product.ProductID == 0)
                 {
                     product.AddeDate = DateTime.Now;
                     dc.StoreProducts.InsertOnSubmit(product);
@@ -31,5 +31,15 @@ namespace Moudle.DataAccess
                 dc.SubmitChanges();
             }
         }
+
+        public void DelProduct(long productID)
+        {
+            using (LinqDataContext linq = new LinqDataContext())
+            {
+                linq.StoreProducts.DeleteOnSubmit(linq.StoreProducts.Where(c => c.ProductID == productID).Single());
+                linq.SubmitChanges();
+            }
+        }
+
     }
 }

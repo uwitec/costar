@@ -88,6 +88,7 @@ namespace CostarWeb.Admin.Base.Product
             {
                 var q = linq.StoreProductInventories.Where(c => c.ProductID == productId).OrderBy(c => c.SortOrder).Select(c => new
                 {
+                    ProductID = c.ProductID,
                     InventoryID = c.InventoryID,
                     QtySold = c.QtySold,
                     QtyAvail = c.QtyAvail,
@@ -162,6 +163,11 @@ namespace CostarWeb.Admin.Base.Product
                 int Variant1 = MyCommon.ToInt(Request["ddl_Vaiant1"]);
                 int Variant2 = MyCommon.ToInt(Request["ddl_Vaiant2"]);
 
+                if (Variant1 == 0 && Variant2 == 0)
+                {
+                    MyCommon.Alert("请选择属性.");
+                    return;
+                }
                 if (_StoreVariantTypeOptions.GetStoreVariantTypeOptionByVariantTypeID(Variant1).Count == 0)
                 {
                     string name = _StoreVariantTypes.GetStoreVariantTypeByID(Variant1).GroupName;
@@ -178,53 +184,42 @@ namespace CostarWeb.Admin.Base.Product
 
             _StoreProductInventoy.DelProductInventoryByProduct(MyCommon.ToLong(this.HiddenField_proId.Value));
 
-            using (LinqDataContext linq = new LinqDataContext())
+            StoreProductInventory inv = new StoreProductInventory();
+            inv.ProductID = MyCommon.ToLong(this.HiddenField_proId.Value);
+            inv.QtyAvail = 0;
+            inv.QtySold = 0;
+            inv.QtyOnHold = 0;
+            inv.SortOrder = 0;
+
+            if (Request["radio_vaiant"] == "ProductNo")
             {
-                StoreProductInventory inv = new StoreProductInventory();
-                inv.ProductID = long.Parse(this.HiddenField_proId.Value);
-                inv.QtyAvail = 0;
-                inv.QtySold = 0;
-                inv.QtyOnHold = 0;
-                inv.SortOrder = 0;
+                inv.QtyAvail = MyCommon.ToInt(Request["ProductNum"]);
+                _StoreProductInventoy.SaveProductInventory(inv);
 
-                if (Request["radio_vaiant"] == "ProductNo")
-                {
-                    inv.QtyAvail = MyCommon.ToInt(Request["ProductNum"]);
-                    _StoreProductInventoy.SaveProductInventory(inv);
+                StoreProduct product = _StoreProduct.GetProductByID(MyCommon.ToLong(this.HiddenField_proId.Value));
+                product.Variant1TypeID = null;
+                product.Variant2TypeID = null;
+                _StoreProduct.SaveProduct(product);
 
-                    StoreProduct product = linq.StoreProducts.Where(c => c.ProductID == MyCommon.ToLong(this.HiddenField_proId.Value)).SingleOrDefault();
-                    product.Variant1TypeID = null;
-                    product.Variant2TypeID = null;
-                    linq.SubmitChanges();
+                MyCommon.Alert("保存库存数量成功.", "ProductList.aspx");
+            }
 
-                    MyCommon.Alert("保存库存数量成功.");
+            if (Request["radio_vaiant"] == "ProductYes")
+            {
+                _StoreProductInventoy.SaveProductInventory(inv);
 
-                    Response.Redirect("ProductList.aspx");
-                }
+                int Variant1 = MyCommon.ToInt(Request["ddl_Vaiant1"]);
+                int Variant2 = MyCommon.ToInt(Request["ddl_Vaiant2"]);
 
-                if (Request["radio_vaiant"] == "ProductYes")
-                {
-                    int Variant1 = MyCommon.ToInt(Request["ddl_Vaiant1"]);
-                    int Variant2 = MyCommon.ToInt(Request["ddl_Vaiant2"]);
+                StoreProduct product = _StoreProduct.GetProductByID(MyCommon.ToLong(this.HiddenField_proId.Value));
+                if (Variant1 == 0) product.Variant1TypeID = null;
+                else product.Variant1TypeID = Variant1;
+                if (Variant2 == 0) product.Variant2TypeID = null;
+                else product.Variant2TypeID = Variant2;
+                _StoreProduct.SaveProduct(product);
 
-                    if (Variant1 == 0 && Variant2 == 0)
-                    {
-                        MyCommon.Alert("请选择属性.");
-                        return;
-                    }
-
-                    StoreProduct product = linq.StoreProducts.Where(c => c.ProductID == MyCommon.ToLong(this.HiddenField_proId.Value)).SingleOrDefault();
-                    if (Variant1 == 0) product.Variant1TypeID = null;
-                    else product.Variant1TypeID = Variant1;
-                    if (Variant2 == 0) product.Variant2TypeID = null;
-                    else product.Variant2TypeID = Variant2;
-                    linq.SubmitChanges();
-
-                    _StoreProductInventoy.SaveProductInventory(inv);
-
-                    ShowVariant(Variant1, Variant2);
-                    BindRepeater(MyCommon.ToInt(this.HiddenField_proId.Value));
-                }
+                ShowVariant(Variant1, Variant2);
+                BindRepeater(MyCommon.ToInt(this.HiddenField_proId.Value));
             }
         }
 
@@ -257,36 +252,33 @@ namespace CostarWeb.Admin.Base.Product
                 return;
             }
 
-            using (LinqDataContext linq = new LinqDataContext())
+            foreach (RepeaterItem item in rpt_list.Items)
             {
-                foreach (RepeaterItem item in rpt_list.Items)
-                {
-                    HiddenField invId = (HiddenField)item.FindControl("HiddenField_InventoryID");
-                    StoreProductInventory inv = linq.StoreProductInventories.Where(c => c.InventoryID == MyCommon.ToInt(invId.Value)).SingleOrDefault();
+                HiddenField invId = (HiddenField)item.FindControl("HiddenField_InventoryID");
+                StoreProductInventory inv = _StoreProductInventoy.GetInventoryByInventoryID(MyCommon.ToInt(invId.Value));
 
-                    DropDownList SVTO1 = (DropDownList)item.FindControl("ddl_SVTO1");
-                    inv.Variant1OptionID = MyCommon.ToInt(SVTO1.SelectedItem.Value);
+                DropDownList SVTO1 = (DropDownList)item.FindControl("ddl_SVTO1");
+                inv.Variant1OptionID = MyCommon.ToInt(SVTO1.SelectedItem.Value);
 
-                    DropDownList SVTO2 = (DropDownList)item.FindControl("ddl_SVTO2");
-                    inv.Variant2OptionID = MyCommon.ToInt(SVTO2.SelectedItem.Value);
+                DropDownList SVTO2 = (DropDownList)item.FindControl("ddl_SVTO2");
+                inv.Variant2OptionID = MyCommon.ToInt(SVTO2.SelectedItem.Value);
 
-                    TextBox QtyAvail = (TextBox)item.FindControl("txt_QtyAvail");
-                    inv.QtyAvail = MyCommon.ToInt(QtyAvail.Text);
+                TextBox QtyAvail = (TextBox)item.FindControl("txt_QtyAvail");
+                inv.QtyAvail = MyCommon.ToInt(QtyAvail.Text);
 
-                    TextBox SortOrder = (TextBox)item.FindControl("txt_SortOrder");
-                    inv.SortOrder = MyCommon.ToInt(SortOrder.Text);
+                TextBox SortOrder = (TextBox)item.FindControl("txt_SortOrder");
+                inv.SortOrder = MyCommon.ToInt(SortOrder.Text);
 
-                    Label QtySold = (Label)item.FindControl("lbl_QtySold");
-                    inv.QtySold = MyCommon.ToInt(QtySold.Text);
+                Label QtySold = (Label)item.FindControl("lbl_QtySold");
+                inv.QtySold = MyCommon.ToInt(QtySold.Text);
 
-                    Label QtyOnHold = (Label)item.FindControl("lbl_QtyOnHold");
-                    inv.QtyOnHold = MyCommon.ToInt(QtyOnHold.Text);
+                Label QtyOnHold = (Label)item.FindControl("lbl_QtyOnHold");
+                inv.QtyOnHold = MyCommon.ToInt(QtyOnHold.Text);
 
-                    linq.SubmitChanges();
-                }
-
-                MyCommon.Alert("保存成功.");
+                _StoreProductInventoy.SaveProductInventory(inv);
             }
+
+            MyCommon.Alert("保存成功.");
         }
 
     }

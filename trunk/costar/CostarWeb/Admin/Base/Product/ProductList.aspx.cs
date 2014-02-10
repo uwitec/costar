@@ -13,6 +13,9 @@ namespace CostarWeb.Admin.Base.Product
     public partial class ProductList : System.Web.UI.Page
     {
         private StoreAnimeRepository _anime = new StoreAnimeRepository();
+        private StoreProductRepository _product = new StoreProductRepository();
+        private StoreProductColorRepository _color = new StoreProductColorRepository();
+        private StoreProductInventoyRepository _inventoy = new StoreProductInventoyRepository();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -43,14 +46,11 @@ namespace CostarWeb.Admin.Base.Product
         }
         protected void _OnDelete(int ProductID)
         {
-            using (LinqDataContext linq = new LinqDataContext())
-            {
-                linq.StoreProductColors.DeleteAllOnSubmit(linq.StoreProductColors.Where(c => c.ProductID == ProductID));
-                linq.StoreProducts.DeleteOnSubmit(linq.StoreProducts.Where(c => c.ProductID == ProductID).Single());
-                linq.SubmitChanges();
+            _product.DelProduct(ProductID);
+            _color.DelProductColor(ProductID);
+            _inventoy.DelProductInventoryByProduct(ProductID);
 
-                Response.Redirect(Request.UrlReferrer.ToString());
-            }
+            Response.Redirect(Request.UrlReferrer.ToString());
         }
     }
 }

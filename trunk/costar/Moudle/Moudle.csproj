@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="DataAccess\StoreColorRepository.cs" />
     <Compile Include="DataAccess\StoreAnimeRepository.cs" />
+    <Compile Include="DataAccess\StoreProductColorRepository.cs" />
     <Compile Include="DataAccess\StoreProductInventoyRepository.cs" />
     <Compile Include="DataAccess\StoreProductRepository.cs" />
     <Compile Include="DataAccess\StoreShippingOptionRepository.cs" />
