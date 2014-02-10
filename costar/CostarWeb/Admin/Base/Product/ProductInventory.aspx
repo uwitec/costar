@@ -139,7 +139,7 @@
                             </td>
                             <td width="100" valign="center">
                                 <span class="fontbtn">
-                                    <a style="cursor: pointer" href="ProductInventory.aspx?InventoryID=<%# Eval("InventoryID") %>&a=del">[删除]</a>
+                                    <a style="cursor: pointer" href="ProductInventory.aspx?ProductID=<%# Eval("ProductID") %>&InventoryID=<%# Eval("InventoryID") %>&a=del">[删除]</a>
                                 </span>
                             </td>
                             <td>

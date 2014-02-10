@@ -1,5 +1,6 @@
 ﻿using Common;
 using Moudle;
+using Moudle.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace CostarWeb.Admin.Base.Product
 {
     public partial class ProductAjax : System.Web.UI.Page
     {
+        private StoreProductRepository _product = new StoreProductRepository();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             int animeId = MyCommon.ToInt(Request["animeId"]);
@@ -20,6 +23,7 @@ namespace CostarWeb.Admin.Base.Product
 
         protected void _OnPageLoad(int animeId)
         {
+
             using (LinqDataContext linq = new LinqDataContext())
             {
                 if (animeId == 0)
