@@ -22,7 +22,7 @@ namespace Moudle.DataAccess
             using (LinqDataContext dc = new LinqDataContext())
             {
                 if (product.ProductID > 0)
-                    dc.StoreProducts.Attach(product, true);
+                    dc.StoreProducts.Attach(product);
                 if (product.ProductID == 0)
                 {
                     product.AddeDate = DateTime.Now;

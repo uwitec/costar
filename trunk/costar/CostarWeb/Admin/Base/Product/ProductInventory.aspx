@@ -12,12 +12,14 @@
         $(function () {
             $("#ddl_Vaiant1").html("<option value=\"0\">--请选择--</option>" + $("#ddl_Vaiant1").html());
             $("#ddl_Vaiant2").html("<option value=\"0\">--请选择--</option>" + $("#ddl_Vaiant2").html());
+            $("#ddl_Vaiant1").val("0");
+            $("#ddl_Vaiant2").val("0");
 
             //点击无属性显示数量，隐藏属性
             $("#ProductNo").click(function () {
-                $("#ProductNum").val("0");
-                $("#ddl_Vaiant1").val("0");
-                $("#ddl_Vaiant2").val("0");
+                //$("#ProductNum").val("0");
+                //$("#ddl_Vaiant1").val("0");
+                //$("#ddl_Vaiant2").val("0");
 
                 $("#VaiantNo").css("display", "block");
                 $("#VaiantYes").css("display", "none");
@@ -25,9 +27,9 @@
             });
             //点击有属性显示属性，隐藏数量
             $("#ProductYes").click(function () {
-                $("#ProductNum").val("0");
-                $("#ddl_Vaiant1").val("0");
-                $("#ddl_Vaiant2").val("0");
+                //$("#ProductNum").val("0");
+                //$("#ddl_Vaiant1").val("0");
+                //$("#ddl_Vaiant2").val("0");
 
                 $("#VaiantNo").css("display", "none");
                 $("#VaiantYes").css("display", "block");
@@ -98,7 +100,7 @@
             条数据
             <asp:Button ID="btn_add" runat="server" Text="添加" OnClick="btn_add_Click" />
             <br />
-            <asp:Literal ID="Literal1" runat="server" Text="(产品名称)"></asp:Literal>库存
+            (<asp:Literal ID="lbl_ProductName1" runat="server" Text="产品名称"></asp:Literal>)库存
             <table class="listtable" width="800px" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                     <th id="th1" runat="server" style="display: none;"><%=_type1%>

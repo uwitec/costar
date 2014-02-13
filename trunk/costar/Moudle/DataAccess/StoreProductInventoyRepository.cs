@@ -58,6 +58,7 @@ namespace Moudle.DataAccess
             StoreProductInventory result = null;
             using (LinqDataContext linq = new LinqDataContext())
             {
+                linq.ObjectTrackingEnabled = false;
                 result = linq.StoreProductInventories.Where(p => p.InventoryID == inventoryID).SingleOrDefault();
             }
             return result;
@@ -73,7 +74,8 @@ namespace Moudle.DataAccess
             {
                 if (proInv.InventoryID > 0)
                 {
-                    linq.StoreProductInventories.Attach(proInv, true);
+                    StoreProductInventory inv = linq.StoreProductInventories.Where(c => c.InventoryID == proInv.InventoryID).SingleOrDefault();
+                    Common.CommonClass.CopyObjectProperty(proInv, inv);
                 }
                 else
                 {
