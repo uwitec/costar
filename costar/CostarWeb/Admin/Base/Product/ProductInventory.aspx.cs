@@ -38,15 +38,10 @@ namespace CostarWeb.Admin.Base.Product
             }
         }
 
-        protected void _OnPageDel(int InventoryID)
-        {
-            _StoreProductInventoy.DelProductInventoy(InventoryID);
-            Response.Redirect(Request.UrlReferrer.ToString());
-        }
-
         protected void _OnPageLoad(int productID)
         {
             this.lbl_ProductName.Text = _StoreProduct.GetProductByID(productID).Name;
+            this.lbl_ProductName1.Text = this.lbl_ProductName.Text;
             //Vaiant1
             ddl_Vaiant1.DataSource = _StoreVariantTypes.GetAllStoreVariantType();
             ddl_Vaiant1.DataTextField = "GroupName";
@@ -66,7 +61,7 @@ namespace CostarWeb.Admin.Base.Product
             int Variant2 = MyCommon.ToInt(_StoreProduct.GetProductByID(productID).Variant2TypeID.ToString());
 
             //Have Variant
-            if (Variant1 > 0 && Variant2 > 0)
+            if (Variant1 > 0 || Variant2 > 0)
             {
                 BindRepeater(productID);
                 this.ProductYes.Checked = true;
@@ -80,6 +75,12 @@ namespace CostarWeb.Admin.Base.Product
                 this.ProductNo.Checked = true;
                 this.VaiantNo.Style.Value = "display: block;";
             }
+        }
+
+        protected void _OnPageDel(int InventoryID)
+        {
+            _StoreProductInventoy.DelProductInventoy(InventoryID);
+            Response.Redirect(Request.UrlReferrer.ToString());
         }
 
         protected void BindRepeater(int productId)
@@ -168,17 +169,27 @@ namespace CostarWeb.Admin.Base.Product
                     MyCommon.Alert("请选择属性.");
                     return;
                 }
-                if (_StoreVariantTypeOptions.GetStoreVariantTypeOptionByVariantTypeID(Variant1).Count == 0)
+                if (Variant1 > 0)
                 {
-                    string name = _StoreVariantTypes.GetStoreVariantTypeByID(Variant1).GroupName;
-                    MyCommon.Alert("属性1中[" + name + "]无数据,请添加.");
-                    return;
+                    if (_StoreVariantTypeOptions.GetStoreVariantTypeOptionByVariantTypeID(Variant1).Count == 0)
+                    {
+                        string name = _StoreVariantTypes.GetStoreVariantTypeByID(Variant1).GroupName;
+                        MyCommon.Alert("属性1中[" + name + "]无数据,请添加.");
+                        VaiantNo.Style.Value = "display: none;";
+                        VaiantYes.Style.Value = "display: block;";
+                        return;
+                    }
                 }
-                if (_StoreVariantTypeOptions.GetStoreVariantTypeOptionByVariantTypeID(Variant2).Count == 0)
+                if (Variant2 > 0)
                 {
-                    string name = _StoreVariantTypes.GetStoreVariantTypeByID(Variant2).GroupName;
-                    MyCommon.Alert("属性2中[" + name + "]无数据,请添加.");
-                    return;
+                    if (_StoreVariantTypeOptions.GetStoreVariantTypeOptionByVariantTypeID(Variant2).Count == 0)
+                    {
+                        string name = _StoreVariantTypes.GetStoreVariantTypeByID(Variant2).GroupName;
+                        MyCommon.Alert("属性2中[" + name + "]无数据,请添加.");
+                        VaiantNo.Style.Value = "display: none;";
+                        VaiantYes.Style.Value = "display: block;";
+                        return;
+                    }
                 }
             }
 
@@ -196,12 +207,15 @@ namespace CostarWeb.Admin.Base.Product
                 inv.QtyAvail = MyCommon.ToInt(Request["ProductNum"]);
                 _StoreProductInventoy.SaveProductInventory(inv);
 
-                StoreProduct product = _StoreProduct.GetProductByID(MyCommon.ToLong(this.HiddenField_proId.Value));
-                product.Variant1TypeID = null;
-                product.Variant2TypeID = null;
-                _StoreProduct.SaveProduct(product);
+                using (LinqDataContext linq = new LinqDataContext())
+                {
+                    StoreProduct product = linq.StoreProducts.Where(p => p.ProductID == MyCommon.ToLong(this.HiddenField_proId.Value)).FirstOrDefault();
+                    product.Variant1TypeID = null;
+                    product.Variant2TypeID = null;
+                    linq.SubmitChanges();
 
-                MyCommon.Alert("保存库存数量成功.", "ProductList.aspx");
+                    MyCommon.Alert("保存库存数量成功.", "ProductList.aspx");
+                }
             }
 
             if (Request["radio_vaiant"] == "ProductYes")
@@ -211,15 +225,22 @@ namespace CostarWeb.Admin.Base.Product
                 int Variant1 = MyCommon.ToInt(Request["ddl_Vaiant1"]);
                 int Variant2 = MyCommon.ToInt(Request["ddl_Vaiant2"]);
 
-                StoreProduct product = _StoreProduct.GetProductByID(MyCommon.ToLong(this.HiddenField_proId.Value));
-                if (Variant1 == 0) product.Variant1TypeID = null;
-                else product.Variant1TypeID = Variant1;
-                if (Variant2 == 0) product.Variant2TypeID = null;
-                else product.Variant2TypeID = Variant2;
-                _StoreProduct.SaveProduct(product);
+                using (LinqDataContext linq = new LinqDataContext())
+                {
+                    StoreProduct product = linq.StoreProducts.Where(p => p.ProductID == MyCommon.ToLong(this.HiddenField_proId.Value)).FirstOrDefault();
+                    if (Variant1 == 0) product.Variant1TypeID = null;
+                    else product.Variant1TypeID = Variant1;
+                    if (Variant2 == 0) product.Variant2TypeID = null;
+                    else product.Variant2TypeID = Variant2;
+                    linq.SubmitChanges();
 
-                ShowVariant(Variant1, Variant2);
-                BindRepeater(MyCommon.ToInt(this.HiddenField_proId.Value));
+                    ShowVariant(Variant1, Variant2);
+                    BindRepeater(MyCommon.ToInt(this.HiddenField_proId.Value));
+
+                    VaiantNo.Style.Value = "display: none;";
+                    VaiantYes.Style.Value = "display: block;";
+                    ProductNum.Value = "0";
+                }
             }
         }
 
@@ -258,10 +279,16 @@ namespace CostarWeb.Admin.Base.Product
                 StoreProductInventory inv = _StoreProductInventoy.GetInventoryByInventoryID(MyCommon.ToInt(invId.Value));
 
                 DropDownList SVTO1 = (DropDownList)item.FindControl("ddl_SVTO1");
-                inv.Variant1OptionID = MyCommon.ToInt(SVTO1.SelectedItem.Value);
+                if (SVTO1.SelectedItem != null)
+                    inv.Variant1OptionID = MyCommon.ToInt(SVTO1.SelectedItem.Value);
+                else
+                    inv.Variant1OptionID = null;
 
                 DropDownList SVTO2 = (DropDownList)item.FindControl("ddl_SVTO2");
-                inv.Variant2OptionID = MyCommon.ToInt(SVTO2.SelectedItem.Value);
+                if (SVTO2.SelectedItem != null)
+                    inv.Variant2OptionID = MyCommon.ToInt(SVTO2.SelectedItem.Value);
+                else
+                    inv.Variant2OptionID = null;
 
                 TextBox QtyAvail = (TextBox)item.FindControl("txt_QtyAvail");
                 inv.QtyAvail = MyCommon.ToInt(QtyAvail.Text);
@@ -278,7 +305,7 @@ namespace CostarWeb.Admin.Base.Product
                 _StoreProductInventoy.SaveProductInventory(inv);
             }
 
-            MyCommon.Alert("保存成功.");
+            MyCommon.Alert("保存成功.", "ProductList.aspx");
         }
 
     }

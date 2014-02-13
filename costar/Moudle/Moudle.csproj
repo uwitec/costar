@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\CommonClass.cs" />
     <Compile Include="DataAccess\StoreColorRepository.cs" />
     <Compile Include="DataAccess\StoreAnimeRepository.cs" />
     <Compile Include="DataAccess\StoreProductColorRepository.cs" />
