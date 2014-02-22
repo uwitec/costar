@@ -75,10 +75,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Base\Product\EditProduct.aspx" />
-    <Content Include="Admin\Base\Product\jquery.autogrow.textarea.js" />
     <Content Include="Admin\Base\Product\ProductInventory.aspx" />
-    <Content Include="Admin\Base\Shippings\jquery.autogrow.textarea.js" />
     <Content Include="Admin\Base\Shippings\StoreShippingManage.aspx" />
+    <Content Include="Admin\Base\ui\main.js" />
     <Content Include="UserControl\admin\Head.ascx" />
     <Content Include="js\jquery.js" />
     <Content Include="Admin\Base\Product\ProductAjax.aspx" />

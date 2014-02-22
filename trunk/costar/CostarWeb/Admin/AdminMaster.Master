@@ -7,6 +7,7 @@
     <title>Untitled Page</title>
     <script type="text/javascript" src="//www.google.com/jsapi"></script>
     <script src="../../../js/loadJQuery.js"></script>
+    <script src="../../Base/ui/main.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="stylesheet" type="text/css" href="/css/Pager.css" />
     <asp:ContentPlaceHolder ID="head" runat="server" />

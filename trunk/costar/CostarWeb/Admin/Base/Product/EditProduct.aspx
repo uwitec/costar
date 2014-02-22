@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMaster.Master" AutoEventWireup="true" CodeBehind="EditProduct.aspx.cs" Inherits="CostarWeb.Admin.Base.Product.EditProduct" %>
 <%@ MasterType VirtualPath="~/Admin/AdminMaster.Master"  %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script src="jquery.autogrow.textarea.js"></script>
     <script type="text/javascript">
         $(function () {
             $("textarea").autogrow();
@@ -21,6 +20,7 @@
                 </th>
                 <td>
                     <asp:TextBox ID="txtName" runat="server" MaxLength="100" />
+                    <asp:RequiredFieldValidator ID="reqName" runat="server" ControlToValidate="txtName" ValidationGroup="vgEdit" Text="输入产品名称" />
                 </td>
             </tr>
             <tr>
@@ -66,8 +66,7 @@
                     <div class="radio"><asp:RadioButton ID="radImgCur" runat="server" GroupName="grpimg" Checked="true" Text="Use current" /></div>
                     <div class="radio"><asp:RadioButton ID="radImgNew" runat="server" GroupName="grpimg" Text="Upload new" /></div>
                     <asp:FileUpload ID="fupFile" runat="server" />
-                    <asp:RegularExpressionValidator ID="valFile" runat="server" CssClass="msg error" ForeColor=""
-                        ControlToValidate="fupFile" Text="Only jpg file allowed" ValidationExpression="^.*\.(jpg|JPG|jpeg|JPEG)$"
+                    <asp:RegularExpressionValidator ID="valFile" runat="server" ControlToValidate="fupFile" Text="Only jpg file allowed" ValidationExpression="^.*\.(jpg|JPG|jpeg|JPEG)$"
                         ValidationGroup="vgEdit" Display="Dynamic" />
                 </td>
             </tr>
@@ -77,8 +76,7 @@
                 <td>
                     <asp:Panel ID="pnlImg2" runat="server"><asp:Image ID="img2" runat="server" Width="200" /> <asp:LinkButton ID="btnDel2" runat="server" Text="Delete" OnClick="btnDel2_Click" /></asp:Panel>
                     <asp:FileUpload ID="fup2" runat="server" />
-                    <asp:RegularExpressionValidator ID="valFile2" runat="server" CssClass="msg error" ForeColor=""
-                        ControlToValidate="fup2" Text="Only jpg files allowed" ValidationExpression="^.*\.(jpg|JPG|jpeg|JPEG)$"
+                    <asp:RegularExpressionValidator ID="valFile2" runat="server" ControlToValidate="fup2" Text="Only jpg files allowed" ValidationExpression="^.*\.(jpg|JPG|jpeg|JPEG)$"
                         ValidationGroup="vgEdit" Display="Dynamic" />
                 </td>
             </tr>
@@ -87,8 +85,7 @@
                 <td>
                     <asp:Panel ID="pnlImg3" runat="server"><asp:Image ID="img3" runat="server" Width="200" /> <asp:LinkButton ID="btnDel3" runat="server" Text="Delete" OnClick="btnDel3_Click" /></asp:Panel>
                     <asp:FileUpload ID="fup3" runat="server" />
-                    <asp:RegularExpressionValidator ID="valFile3" runat="server" CssClass="msg error" ForeColor=""
-                        ControlToValidate="fup3" Text="Only jpg files allowed" ValidationExpression="^.*\.(jpg|JPG|jpeg|JPEG)$"
+                    <asp:RegularExpressionValidator ID="valFile3" runat="server" ControlToValidate="fup3" Text="Only jpg files allowed" ValidationExpression="^.*\.(jpg|JPG|jpeg|JPEG)$"
                         ValidationGroup="vgEdit" Display="Dynamic" />
                 </td>
             </tr>
@@ -97,8 +94,7 @@
                 <td>
                     <asp:Panel ID="pnlImg4" runat="server"><asp:Image ID="img4" runat="server" Width="200" /> <asp:LinkButton ID="btnDel4" runat="server" Text="Delete" OnClick="btnDel4_Click" /></asp:Panel>
                     <asp:FileUpload ID="fup4" runat="server" />
-                    <asp:RegularExpressionValidator ID="valFile4" runat="server" CssClass="msg error" ForeColor=""
-                        ControlToValidate="fup4" Text="Only jpg files allowed" ValidationExpression="^.*\.(jpg|JPG|jpeg|JPEG)$"
+                    <asp:RegularExpressionValidator ID="valFile4" runat="server" ControlToValidate="fup4" Text="Only jpg files allowed" ValidationExpression="^.*\.(jpg|JPG|jpeg|JPEG)$"
                         ValidationGroup="vgEdit" Display="Dynamic" />
                 </td>
             </tr>
@@ -115,21 +111,22 @@
                 <th>零售价格
                 </th>
                 <td>
-                    <asp:TextBox ID="txtRetailPrice" runat="server" MaxLength="10" />
+                    <asp:TextBox ID="txtRetailPrice" runat="server" MaxLength="10" CssClass="positive-decimal" />
                 </td>
             </tr>
             <tr>
                 <th>实际价格
                 </th>
                 <td>
-                    <asp:TextBox ID="txtSalePrice" runat="server" MaxLength="10" />
+                    <asp:TextBox ID="txtSalePrice" runat="server" MaxLength="10" CssClass="positive-decimal" />
+                    <asp:RequiredFieldValidator ID="reqSalePrice" runat="server" ControlToValidate="txtSalePrice" ValidationGroup="vgEdit" Text="输入销售价格" />
                 </td>
             </tr>
             <tr>
                 <th>VIP价格
                 </th>
                 <td>
-                    <asp:TextBox ID="txtVipPrice" runat="server" MaxLength="10" />
+                    <asp:TextBox ID="txtVipPrice" runat="server" MaxLength="10" CssClass="positive-decimal" />
                 </td>
             </tr>
             <tr>
@@ -150,7 +147,7 @@
             <tr>
                 <th></th>
                 <td>
-                    <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text=" 保 存 " />
+                    <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text=" 保 存 " ValidationGroup="vgEdit" />
                     <span class="fontbtn"><a href="ProductList.aspx">取消当前编辑</a> </span>
                 </td>
             </tr>
