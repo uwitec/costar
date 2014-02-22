@@ -22,6 +22,15 @@ namespace CostarWeb.Admin.Base.Product {
         protected global::System.Web.UI.WebControls.TextBox txtName;
         
         /// <summary>
+        /// reqName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqName;
+        
+        /// <summary>
         /// txtShortDescription control.
         /// </summary>
         /// <remarks>
@@ -272,6 +281,15 @@ namespace CostarWeb.Admin.Base.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSalePrice;
+        
+        /// <summary>
+        /// reqSalePrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqSalePrice;
         
         /// <summary>
         /// txtVipPrice control.

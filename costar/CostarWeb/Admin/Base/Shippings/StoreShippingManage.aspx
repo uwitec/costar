@@ -3,12 +3,10 @@
 <%@ MasterType VirtualPath="~/Admin/AdminMaster.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script src="jquery.autogrow.textarea.js"></script>
     <script type="text/javascript">
         $(function () {
             $("textarea").autogrow();
         });
-
     </script>
     <style type="text/css">
         .auto-style1
