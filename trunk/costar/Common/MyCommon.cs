@@ -15,39 +15,6 @@ namespace Common
     /// </summary>
     public static class MyCommon
     {
-        /// <summary>
-        /// Cookie用户信息
-        /// </summary>
-        /// <returns></returns>
-        public static string UserRoleInfo()
-        {
-            System.Web.Security.FormsIdentity fi = (System.Web.Security.FormsIdentity)HttpContext.Current.User.Identity;
-            System.Web.Security.FormsAuthenticationTicket ticket = fi.Ticket;
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            sb.Append("以下信息为测试用参考调试信息:<br />");
-            sb.Append("======分割线=======<br />");
-            sb.Append("用于存储 Forms 身份验证票据 Cookie 名称:" + System.Web.Security.FormsAuthentication.FormsCookieName + "<br />");
-            sb.Append("是否验证用户:" + HttpContext.Current.User.Identity.IsAuthenticated + "<br />");
-            sb.Append("身份验证类型:" + HttpContext.Current.User.Identity.AuthenticationType + "<br />");
-            sb.Append("用户信息:" + HttpContext.Current.User.Identity.Name + "<br />");
-            sb.Append("用户证票信息:" + ticket.Name + "<br />");
-            sb.Append("用户证票内容:" + ticket.UserData + "<br />");
-            sb.Append("持久性:" + ticket.IsPersistent.ToString() + "<br />");
-            sb.Append("开始时间:" + ticket.IssueDate.ToString() + "<br />");
-            sb.Append("过期日期:" + ticket.Expiration.ToString() + "<br />");
-            sb.Append("Forms 身份验证票证是否已过期:" + ticket.Expired.ToString() + "<br />");
-            sb.Append("cookies路径:" + ticket.CookiePath + "<br />");
-            sb.Append("<br />");
-            sb.Append("用户ID:" + HttpContext.Current.User.Identity.Name.Split(',')[0] + "<br />");
-            sb.Append("用户名:" + HttpContext.Current.User.Identity.Name.Split(',')[1] + "<br />");
-            sb.Append("用户所属机构类型ID:" + HttpContext.Current.User.Identity.Name.Split(',')[2] + "<br />");
-            sb.Append("用户所属机构类型名称:" + HttpContext.Current.User.Identity.Name.Split(',')[3] + "<br />");
-            sb.Append("用户姓名:" + HttpContext.Current.User.Identity.Name.Split(',')[4] + "<br />");
-            sb.Append("用户角色ID:" + HttpContext.Current.User.Identity.Name.Split(',')[5] + "<br />");
-            sb.Append("用户所属机构ID:" + HttpContext.Current.User.Identity.Name.Split(',')[6] + "<br />");
-            sb.Append("所属验证票据角色:" + ticket.UserData + "<br />");
-            return sb.ToString();
-        }
 
         #region 截取字符
 

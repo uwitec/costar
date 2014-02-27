@@ -1,6 +1,7 @@
 ﻿using Common;
 using Moudle;
 using Moudle.DataAccess;
+using Moudle.DataAccess.Domain;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -85,7 +86,7 @@ namespace CostarWeb.Admin.Base.Product
 
         protected void BindRepeater(int productId)
         {
-            using (LinqDataContext linq = new LinqDataContext())
+            using (CostarDataContext linq = new CostarDataContext())
             {
                 var q = linq.StoreProductInventories.Where(c => c.ProductID == productId).OrderBy(c => c.SortOrder).Select(c => new
                 {
@@ -207,7 +208,7 @@ namespace CostarWeb.Admin.Base.Product
                 inv.QtyAvail = MyCommon.ToInt(Request["ProductNum"]);
                 _StoreProductInventoy.SaveProductInventory(inv);
 
-                using (LinqDataContext linq = new LinqDataContext())
+                using (CostarDataContext linq = new CostarDataContext())
                 {
                     StoreProduct product = linq.StoreProducts.Where(p => p.ProductID == MyCommon.ToLong(this.HiddenField_proId.Value)).FirstOrDefault();
                     product.Variant1TypeID = null;
@@ -225,7 +226,7 @@ namespace CostarWeb.Admin.Base.Product
                 int Variant1 = MyCommon.ToInt(Request["ddl_Vaiant1"]);
                 int Variant2 = MyCommon.ToInt(Request["ddl_Vaiant2"]);
 
-                using (LinqDataContext linq = new LinqDataContext())
+                using (CostarDataContext linq = new CostarDataContext())
                 {
                     StoreProduct product = linq.StoreProducts.Where(p => p.ProductID == MyCommon.ToLong(this.HiddenField_proId.Value)).FirstOrDefault();
                     if (Variant1 == 0) product.Variant1TypeID = null;

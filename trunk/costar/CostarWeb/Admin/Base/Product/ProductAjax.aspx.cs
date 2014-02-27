@@ -1,6 +1,7 @@
 ﻿using Common;
 using Moudle;
 using Moudle.DataAccess;
+using Moudle.DataAccess.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace CostarWeb.Admin.Base.Product
         protected void _OnPageLoad(int animeId)
         {
 
-            using (LinqDataContext linq = new LinqDataContext())
+            using (CostarDataContext linq = new CostarDataContext())
             {
                 if (animeId == 0)
                 {
