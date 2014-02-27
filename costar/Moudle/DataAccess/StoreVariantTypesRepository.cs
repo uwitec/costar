@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Moudle.DataAccess.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace Moudle.DataAccess
         public List<StoreVariantType> GetAllStoreVariantType()
         {
             List<StoreVariantType> results = new List<StoreVariantType>();
-            using (LinqDataContext linq = new LinqDataContext())
+            using (CostarDataContext linq = new CostarDataContext())
             {
                 results = linq.StoreVariantTypes.ToList();
             }
@@ -28,7 +29,7 @@ namespace Moudle.DataAccess
         public StoreVariantType GetStoreVariantTypeByID(int VariantTypeID)
         {
             StoreVariantType results = null;
-            using (LinqDataContext linq = new LinqDataContext())
+            using (CostarDataContext linq = new CostarDataContext())
             {
                 results = linq.StoreVariantTypes.Where(c => c.VariantTypeID == VariantTypeID).FirstOrDefault();
             }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Moudle.DataAccess.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace Moudle.DataAccess
         public StoreShippingOption GetShippingByID(long ShippingOptionID)
         {
             StoreShippingOption result = null;
-            using (LinqDataContext linq = new LinqDataContext())
+            using (CostarDataContext linq = new CostarDataContext())
             {
                 result = linq.StoreShippingOptions.Where(p => p.ShippingOptionID == ShippingOptionID).SingleOrDefault();
             }

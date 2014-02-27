@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Moudle.DataAccess.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace Moudle.DataAccess
         /// <param name="InventoryID"></param>
         public void DelProductInventoy(long InventoryID)
         {
-            using (LinqDataContext linq = new LinqDataContext())
+            using (CostarDataContext linq = new CostarDataContext())
             {
                 linq.StoreProductInventories.DeleteAllOnSubmit(linq.StoreProductInventories.Where(c => c.InventoryID == InventoryID));
                 linq.SubmitChanges();
@@ -26,7 +27,7 @@ namespace Moudle.DataAccess
         /// <param name="product"></param>
         public void DelProductInventoryByProduct(long productID)
         {
-            using (LinqDataContext linq = new LinqDataContext())
+            using (CostarDataContext linq = new CostarDataContext())
             {
                 linq.StoreProductInventories.DeleteAllOnSubmit(linq.StoreProductInventories.Where(c => c.ProductID == productID));
                 linq.SubmitChanges();
@@ -41,7 +42,7 @@ namespace Moudle.DataAccess
         public StoreProductInventory GetInventoryByProductID(long productID)
         {
             StoreProductInventory result = null;
-            using (LinqDataContext linq = new LinqDataContext())
+            using (CostarDataContext linq = new CostarDataContext())
             {
                 result = linq.StoreProductInventories.Where(p => p.ProductID == productID).OrderBy(c => c.SortOrder).SingleOrDefault();
             }
@@ -56,7 +57,7 @@ namespace Moudle.DataAccess
         public StoreProductInventory GetInventoryByInventoryID(long inventoryID)
         {
             StoreProductInventory result = null;
-            using (LinqDataContext linq = new LinqDataContext())
+            using (CostarDataContext linq = new CostarDataContext())
             {
                 linq.ObjectTrackingEnabled = false;
                 result = linq.StoreProductInventories.Where(p => p.InventoryID == inventoryID).SingleOrDefault();
@@ -70,7 +71,7 @@ namespace Moudle.DataAccess
         /// <param name="product"></param>
         public void SaveProductInventory(StoreProductInventory proInv)
         {
-            using (LinqDataContext linq = new LinqDataContext())
+            using (CostarDataContext linq = new CostarDataContext())
             {
                 if (proInv.InventoryID > 0)
                 {
@@ -93,7 +94,7 @@ namespace Moudle.DataAccess
         public decimal QtyAvailByProduct(long productID)
         {
             decimal QtyAvail = 0;
-            using (LinqDataContext linq = new LinqDataContext())
+            using (CostarDataContext linq = new CostarDataContext())
             {
                 int? b = linq.StoreProductInventories.Where(i => i.ProductID == productID).Sum(a => (int?)a.QtyAvail);
                 decimal.TryParse(b.ToString(), out QtyAvail);
