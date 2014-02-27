@@ -46,6 +46,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\CommonClass.cs" />
+    <Compile Include="DataAccess\AccountRepository.cs" />
+    <Compile Include="DataAccess\Connection.cs" />
+    <Compile Include="DataAccess\Domain\Account.cs" />
+    <Compile Include="DataAccess\Domain\Costar.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Costar.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Domain\CostarDataContext.cs" />
     <Compile Include="DataAccess\StoreColorRepository.cs" />
     <Compile Include="DataAccess\StoreAnimeRepository.cs" />
     <Compile Include="DataAccess\StoreProductColorRepository.cs" />
@@ -54,24 +63,19 @@
     <Compile Include="DataAccess\StoreShippingOptionRepository.cs" />
     <Compile Include="DataAccess\StoreVariantTypeOptionsRepository.cs" />
     <Compile Include="DataAccess\StoreVariantTypesRepository.cs" />
-    <Compile Include="Linq.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Linq.dbml</DependentUpon>
-    </Compile>
-    <Compile Include="LinqDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Services\AccountService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Linq.dbml">
+    <None Include="DataAccess\Domain\Costar.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>Linq.designer.cs</LastGenOutput>
+      <LastGenOutput>Costar.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
@@ -83,15 +87,19 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DButility\DButility.csproj">
-      <Project>{02A93B1E-5304-40F8-8742-46EDB260BF1D}</Project>
-      <Name>DButility</Name>
-    </ProjectReference>
+    <Content Include="DataAccess\Databases\Iteration001.sql" />
+    <Content Include="DataAccess\Databases\Iteration002.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Linq.dbml.layout">
-      <DependentUpon>Linq.dbml</DependentUpon>
+    <None Include="DataAccess\Domain\Costar.dbml.layout">
+      <DependentUpon>Costar.dbml</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DButility\DButility.csproj">
+      <Project>{02a93b1e-5304-40f8-8742-46edb260bf1d}</Project>
+      <Name>DButility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
