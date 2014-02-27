@@ -1,6 +1,7 @@
 ﻿using Common;
 using Moudle;
 using Moudle.DataAccess;
+using Moudle.DataAccess.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace CostarWeb.Admin.Base.Shipping
         {
             this.div_show.Style.Value = "display: none;";
 
-            using (LinqDataContext linq = new LinqDataContext())
+            using (CostarDataContext linq = new CostarDataContext())
             {
                 var q = linq.StoreShippingOptions.Select(c => new
                 {
@@ -103,7 +104,7 @@ namespace CostarWeb.Admin.Base.Shipping
 
         protected void btn_save_Click(object sender, EventArgs e)
         {
-            using (LinqDataContext linq = new LinqDataContext())
+            using (CostarDataContext linq = new CostarDataContext())
             {
                 int ShippingOptionID = MyCommon.ToInt(Request["ShippingOptionID"]);
 

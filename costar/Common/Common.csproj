@@ -47,7 +47,15 @@
   <ItemGroup>
     <Compile Include="MyCommon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UploadFiles.cs" />
+    <Compile Include="Util\Cryptography.cs" />
+    <Compile Include="Util\Extensions.cs" />
+    <Compile Include="WebContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Moudle\Moudle.csproj">
+      <Project>{352164f9-4200-4b6e-b1bd-53ff3d5bd115}</Project>
+      <Name>Moudle</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -310,17 +310,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BLL\BLL.csproj">
-      <Project>{208690F8-DEAE-4F30-BADC-037AEA252230}</Project>
-      <Name>BLL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{6FB24E00-70AF-465C-B314-56FBB8BBA0C3}</Project>
       <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{0cee4cd3-6e10-4785-9fb7-aebf6e04c9de}</Project>
-      <Name>DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Moudle\Moudle.csproj">
       <Project>{352164F9-4200-4B6E-B1BD-53FF3D5BD115}</Project>

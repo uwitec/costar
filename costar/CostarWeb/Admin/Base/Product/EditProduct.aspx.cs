@@ -1,6 +1,7 @@
 ﻿using Common;
 using Moudle;
 using Moudle.DataAccess;
+using Moudle.DataAccess.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,15 @@ namespace CostarWeb.Admin.Base.Product
     public partial class EditProduct : System.Web.UI.Page
     {
         StoreProduct _product = null;
-        StoreProductRepository storeProductRep = new StoreProductRepository();
-        StoreAnimeRepository storeAnimeRep = new StoreAnimeRepository();
-        StoreColorRepository storeColorRep = new StoreColorRepository();
+        StoreProductRepository storeProductRep = null;
+        StoreAnimeRepository storeAnimeRep = null;
+        StoreColorRepository storeColorRep = null;
         public EditProduct()
         {
+            storeProductRep = new StoreProductRepository();
+            storeAnimeRep = new StoreAnimeRepository();
+            storeColorRep = new StoreColorRepository();
+
             long productID = 0;
             if (!string.IsNullOrEmpty(HttpContext.Current.Request["ProductID"]))
                 productID = MyCommon.ToLong(HttpContext.Current.Request["ProductID"]);
