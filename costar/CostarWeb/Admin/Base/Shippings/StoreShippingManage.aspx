@@ -55,7 +55,7 @@
                 <th>配送价格
                 </th>
                 <td class="auto-style1">
-                    <asp:TextBox ID="txt_Price" runat="server" MaxLength="10" />
+                    <asp:TextBox ID="txt_Price" runat="server" MaxLength="10"  CssClass="positive-decimal"/>
                 </td>
                 <td>
                     <asp:DropDownList ID="ddl_Per" runat="server">

@@ -8,6 +8,13 @@ namespace Moudle.DataAccess
 {
     public class StoreProductInventoyRepository
     {
+        private Connection _conn;
+
+        public StoreProductInventoyRepository()
+        {
+            _conn = new Connection();
+        }
+
         /// <summary>
         /// Delete ProductInventoy By InventoryID
         /// </summary>
@@ -39,12 +46,12 @@ namespace Moudle.DataAccess
         /// </summary>
         /// <param name="productID"></param>
         /// <returns></returns>
-        public StoreProductInventory GetInventoryByProductID(long productID)
+        public List<StoreProductInventory> GetInventoryByProductID(long productID)
         {
-            StoreProductInventory result = null;
-            using (CostarDataContext linq = new CostarDataContext())
+            List<StoreProductInventory> result = new List<StoreProductInventory>();
+            using (CostarDataContext dc = new CostarDataContext())
             {
-                result = linq.StoreProductInventories.Where(p => p.ProductID == productID).OrderBy(c => c.SortOrder).SingleOrDefault();
+                result = dc.StoreProductInventories.Where(p => p.ProductID == productID).OrderBy(c => c.SortOrder).ToList();
             }
             return result;
         }
@@ -71,19 +78,30 @@ namespace Moudle.DataAccess
         /// <param name="product"></param>
         public void SaveProductInventory(StoreProductInventory proInv)
         {
-            using (CostarDataContext linq = new CostarDataContext())
+            using (CostarDataContext dc = _conn.GetContext())
             {
                 if (proInv.InventoryID > 0)
+                    dc.StoreProductInventories.Attach(proInv, true);
+                if (proInv.InventoryID == 0)
                 {
-                    StoreProductInventory inv = linq.StoreProductInventories.Where(c => c.InventoryID == proInv.InventoryID).SingleOrDefault();
-                    Common.CommonClass.CopyObjectProperty(proInv, inv);
+                    dc.StoreProductInventories.InsertOnSubmit(proInv);
                 }
-                else
-                {
-                    linq.StoreProductInventories.InsertOnSubmit(proInv);
-                }
-                linq.SubmitChanges();
+                dc.SubmitChanges();
             }
+
+            //using (CostarDataContext linq = new CostarDataContext())
+            //{
+            //    if (proInv.InventoryID > 0)
+            //    {
+            //        StoreProductInventory inv = linq.StoreProductInventories.Where(c => c.InventoryID == proInv.InventoryID).SingleOrDefault();
+            //        Common.CommonClass.CopyObjectProperty(proInv, inv);
+            //    }
+            //    else
+            //    {
+            //        linq.StoreProductInventories.InsertOnSubmit(proInv);
+            //    }
+            //    linq.SubmitChanges();
+            //}
         }
 
         /// <summary>

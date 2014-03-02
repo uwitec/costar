@@ -78,6 +78,8 @@
     <Content Include="Admin\Base\Product\ProductInventory.aspx" />
     <Content Include="Admin\Base\Shippings\StoreShippingManage.aspx" />
     <Content Include="Admin\Base\ui\main.js" />
+    <Content Include="bin\ActionlessForm.dll" />
+    <Content Include="bin\UrlRewriter.dll" />
     <Content Include="UserControl\admin\Head.ascx" />
     <Content Include="js\jquery.js" />
     <Content Include="Admin\Base\Product\ProductAjax.aspx" />

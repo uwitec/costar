@@ -13,15 +13,6 @@ namespace CostarWeb.Admin.Base.Product {
     public partial class ProductInventory {
         
         /// <summary>
-        /// Head1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
-        
-        /// <summary>
         /// lbl_ProductName 控件。
         /// </summary>
         /// <remarks>
@@ -55,7 +46,7 @@ namespace CostarWeb.Admin.Base.Product {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText ProductNum;
+        protected global::System.Web.UI.WebControls.TextBox ProductNum;
         
         /// <summary>
         /// ProductYes 控件。
@@ -82,7 +73,7 @@ namespace CostarWeb.Admin.Base.Product {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect ddl_Vaiant1;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_Vaiant1;
         
         /// <summary>
         /// ddl_Vaiant2 控件。
@@ -91,7 +82,7 @@ namespace CostarWeb.Admin.Base.Product {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect ddl_Vaiant2;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_Vaiant2;
         
         /// <summary>
         /// btn_continue 控件。
@@ -182,5 +173,17 @@ namespace CostarWeb.Admin.Base.Product {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_proId;
+        
+        /// <summary>
+        /// Master 属性。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的属性。
+        /// </remarks>
+        public new CostarWeb.Admin.AdminMaster Master {
+            get {
+                return ((CostarWeb.Admin.AdminMaster)(base.Master));
+            }
+        }
     }
 }
