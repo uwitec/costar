@@ -1,5 +1,4 @@
-﻿using Common.Util;
-using Moudle;
+﻿using Common;
 using Moudle.DataAccess.Domain;
 using Moudle.Services;
 using System;
@@ -8,11 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace Common
+namespace Moudle.Impl
 {
     public class WebContext
     {
-        private const string ENC_USER_KEY = "SH723HSDFUE88";
+        private const string ENC_USER_KEY = "SESSION82PEOX5";
+        private const string SESSION_ENC_USER_KEY = "SH723HSDFUE00";
 
         private Account _currentUser = null;
         public Account CurrentUser
@@ -39,8 +39,18 @@ namespace Common
             }
             set
             {
-
+                string key = "lastsslogid";
+                if (value == null) // remove cookie
+                    DeleteCookie(key, key);
+                else // store in cookie
+                    SetEncryptedCookie(key, value.AccountID.ToString().Encrypt(SESSION_ENC_USER_KEY), DateTime.UtcNow.AddMinutes(30), key);
+                _currentUser = value;
             }
+        }
+
+        private void DeleteCookie(string name, string key)
+        {
+            SetEncryptedCookie(name, string.Empty, DateTime.Now.AddDays(-1d), key);
         }
 
         private void SetEncryptedCookie(string name, string value, DateTime expires, string key)
@@ -49,8 +59,6 @@ namespace Common
             if (expires != DateTime.MinValue)
                 cookie.Expires = expires;
             cookie.HttpOnly = true;
-            //if (Configuration.EnableSSL)
-            //    cookie.Secure = true;
             HttpContext.Current.Response.AppendCookie(cookie);
         }
 

@@ -131,12 +131,14 @@ namespace Common
         }
         #endregion
 
+        #region 转换LONG
         public static long ToLong(string s)
         {
             long _long = 0;
             long.TryParse(s, out _long);
             return _long;
         }
+        #endregion
 
         #region 转换Decimal
 
@@ -311,5 +313,14 @@ namespace Common
         }
         #endregion
 
+        public static string Encrypt(this string s, string key)
+        {
+            return Cryptography.Encrypt(s, key);
+        }
+
+        public static string Decrypt(this string s, string key)
+        {
+            return Cryptography.Decrypt(s, key);
+        }
     }
 }
