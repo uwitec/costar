@@ -317,7 +317,7 @@
       <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Moudle\Moudle.csproj">
-      <Project>{352164F9-4200-4B6E-B1BD-53FF3D5BD115}</Project>
+      <Project>{352164f9-4200-4b6e-b1bd-53ff3d5bd115}</Project>
       <Name>Moudle</Name>
     </ProjectReference>
   </ItemGroup>
